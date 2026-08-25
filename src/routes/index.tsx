@@ -1,26 +1,32 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { createServerFn } from '@tanstack/react-start';
-import { prisma } from '../db';
+import { createFileRoute } from '@tanstack/react-router'
+import { AppUrlForm } from '#/components/AppUrlForm'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '#/components/ui/card'
 
 export const Route = createFileRoute('/')({
-  component: App,
-  loader: () => getTodos(),
-});
+  component: Home,
+})
 
-const getTodos = createServerFn({ method: 'GET' }).handler(async () => {
-  return prisma.todo.findMany();
-});
-
-function App() {
-  const todos = Route.useLoaderData();
-
+function Home() {
   return (
-    <div>
-      <ul>
-        {todos.map(todo => (
-          <li key={todo.id}>{todo.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
+    <main className="page-wrap px-4 py-12">
+      <Card className="mx-auto max-w-xl">
+        <CardHeader>
+          <CardTitle>Import an app</CardTitle>
+          <CardDescription>
+            Paste a Google Play or App Store link and we&apos;ll pull in its
+            store data.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <AppUrlForm />
+        </CardContent>
+      </Card>
+    </main>
+  )
 }

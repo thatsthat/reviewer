@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import {
@@ -6,26 +6,22 @@ import {
   NotFoundError,
   type App as GooglePlayApp,
 } from '@mradex77/google-play-scraper'
+import { AppUrlForm } from '#/components/AppUrlForm'
 import { prisma } from '#/db'
 import type { Prisma } from '#/generated/prisma/client'
+import { detectAppStorePlatform } from '#/lib/app-store'
 
 const googlePlayUrlSchema = z.object({
   url: z.string().min(1, 'A Google Play URL is required'),
 })
 
 function extractGooglePlayAppId(rawUrl: string): string {
-  let parsed: URL
-  try {
-    parsed = new URL(rawUrl)
-  } catch {
-    throw new Error('That is not a valid URL.')
+  const platform = detectAppStorePlatform(rawUrl)
+  if (platform !== 'google') {
+    throw new Error('That looks like an App Store link, not a Google Play link.')
   }
 
-  if (!/(^|\.)play\.google\.com$/.test(parsed.hostname)) {
-    throw new Error('URL must be a play.google.com app link.')
-  }
-
-  const appId = parsed.searchParams.get('id')
+  const appId = new URL(rawUrl).searchParams.get('id')
   if (!appId) {
     throw new Error('URL is missing the "id" query parameter.')
   }
@@ -48,10 +44,6 @@ function toGoogleRow(details: GooglePlayApp) {
     installs: details.installs,
     minInstalls:
       details.minInstalls != null ? BigInt(details.minInstalls) : null,
-    price: details.price,
-    currency: details.currency,
-    priceText: details.priceText,
-    free: details.free,
     version: details.version,
     androidVersion: details.androidVersion,
     contentRating: details.contentRating,
@@ -84,9 +76,10 @@ export const addGooglePlayApp = createServerFn({ method: 'POST' })
       where: { appId: details.appId },
       create: { appId: details.appId, ...row },
       update: row,
+      select: { appId: true, title: true, score: true, installs: true },
     })
 
-    return { ...record, price: record.price?.toNumber() ?? null }
+    return record
   })
 
 export const Route = createFileRoute('/google')({
@@ -111,17 +104,8 @@ export const Route = createFileRoute('/google')({
 })
 
 function GooglePlayImport() {
-  const navigate = useNavigate({ from: Route.fullPath })
   const { url } = Route.useSearch()
   const record = Route.useLoaderData()
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const form = event.currentTarget
-    const value = new FormData(form).get('url')
-    if (typeof value !== 'string' || !value) return
-    navigate({ search: { url: value } })
-  }
 
   return (
     <main className="page-wrap px-4 py-12">
@@ -131,18 +115,9 @@ function GooglePlayImport() {
           Import an app
         </h1>
 
-        <form onSubmit={handleSubmit} className="mb-8 flex gap-2">
-          <input
-            type="url"
-            name="url"
-            defaultValue={url}
-            placeholder="https://play.google.com/store/apps/details?id=..."
-            className="demo-input min-w-0 flex-1"
-          />
-          <button type="submit" className="demo-button whitespace-nowrap">
-            Import
-          </button>
-        </form>
+        <div className="mb-8">
+          <AppUrlForm defaultValue={url} />
+        </div>
 
         {record && (
           <div className="demo-card">

@@ -11,8 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AppleRouteImport } from './routes/apple'
 import { Route as GoogleRouteImport } from './routes/google'
-import { Route as DemoPrismaRouteImport } from './routes/demo/prisma'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -24,49 +24,49 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppleRoute = AppleRouteImport.update({
+  id: '/apple',
+  path: '/apple',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GoogleRoute = GoogleRouteImport.update({
   id: '/google',
   path: '/google',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoPrismaRoute = DemoPrismaRouteImport.update({
-  id: '/demo/prisma',
-  path: '/demo/prisma',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/apple': typeof AppleRoute
   '/google': typeof GoogleRoute
-  '/demo/prisma': typeof DemoPrismaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/apple': typeof AppleRoute
   '/google': typeof GoogleRoute
-  '/demo/prisma': typeof DemoPrismaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/apple': typeof AppleRoute
   '/google': typeof GoogleRoute
-  '/demo/prisma': typeof DemoPrismaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/google' | '/demo/prisma'
+  fullPaths: '/' | '/about' | '/apple' | '/google'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/google' | '/demo/prisma'
-  id: '__root__' | '/' | '/about' | '/google' | '/demo/prisma'
+  to: '/' | '/about' | '/apple' | '/google'
+  id: '__root__' | '/' | '/about' | '/apple' | '/google'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AppleRoute: typeof AppleRoute
   GoogleRoute: typeof GoogleRoute
-  DemoPrismaRoute: typeof DemoPrismaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -85,18 +85,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/apple': {
+      id: '/apple'
+      path: '/apple'
+      fullPath: '/apple'
+      preLoaderRoute: typeof AppleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/google': {
       id: '/google'
       path: '/google'
       fullPath: '/google'
       preLoaderRoute: typeof GoogleRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo/prisma': {
-      id: '/demo/prisma'
-      path: '/demo/prisma'
-      fullPath: '/demo/prisma'
-      preLoaderRoute: typeof DemoPrismaRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -105,8 +105,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AppleRoute: AppleRoute,
   GoogleRoute: GoogleRoute,
-  DemoPrismaRoute: DemoPrismaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
