@@ -11,8 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as AppleRouteImport } from './routes/apple'
-import { Route as GoogleRouteImport } from './routes/google'
+import { Route as AppsAppIdRouteImport } from './routes/apps.$appId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -24,49 +23,40 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppleRoute = AppleRouteImport.update({
-  id: '/apple',
-  path: '/apple',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GoogleRoute = GoogleRouteImport.update({
-  id: '/google',
-  path: '/google',
+const AppsAppIdRoute = AppsAppIdRouteImport.update({
+  id: '/apps/$appId',
+  path: '/apps/$appId',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/apple': typeof AppleRoute
-  '/google': typeof GoogleRoute
+  '/apps/$appId': typeof AppsAppIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/apple': typeof AppleRoute
-  '/google': typeof GoogleRoute
+  '/apps/$appId': typeof AppsAppIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/apple': typeof AppleRoute
-  '/google': typeof GoogleRoute
+  '/apps/$appId': typeof AppsAppIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/apple' | '/google'
+  fullPaths: '/' | '/about' | '/apps/$appId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/apple' | '/google'
-  id: '__root__' | '/' | '/about' | '/apple' | '/google'
+  to: '/' | '/about' | '/apps/$appId'
+  id: '__root__' | '/' | '/about' | '/apps/$appId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AppleRoute: typeof AppleRoute
-  GoogleRoute: typeof GoogleRoute
+  AppsAppIdRoute: typeof AppsAppIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -85,18 +75,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/apple': {
-      id: '/apple'
-      path: '/apple'
-      fullPath: '/apple'
-      preLoaderRoute: typeof AppleRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/google': {
-      id: '/google'
-      path: '/google'
-      fullPath: '/google'
-      preLoaderRoute: typeof GoogleRouteImport
+    '/apps/$appId': {
+      id: '/apps/$appId'
+      path: '/apps/$appId'
+      fullPath: '/apps/$appId'
+      preLoaderRoute: typeof AppsAppIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -105,8 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AppleRoute: AppleRoute,
-  GoogleRoute: GoogleRoute,
+  AppsAppIdRoute: AppsAppIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
