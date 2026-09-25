@@ -6,6 +6,12 @@
       "sourceType": "github",
       "skillPath": "skills/shadcn/SKILL.md",
       "computedHash": "c1a68ee06a668aced9ab2b5fbdea5f989864123794eb2e056b339a072dbb7f10"
+    },
+    "storybook-tanstack-start": {
+      "source": "jonmumm/storybook-addon-tanstack-start",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "ada560c4748ccaef51d2076f4cdc207470b67e15689b33093383d7e5b0ebb017"
     }
   }
 }

@@ -17,5 +17,8 @@
     "lib": "#/lib",
     "hooks": "#/hooks"
   },
+  "registries": {
+    "@storybook": "https://registry.lloydrichards.dev/v3/radix/{name}.json"
+  },
   "iconLibrary": "lucide"
 }
