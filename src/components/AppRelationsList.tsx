@@ -54,6 +54,12 @@ function AppRelationRow({
     }
   }
 
+  function handleLinkClick(event: React.MouseEvent) {
+    if (longPress.consumeLongPress()) {
+      event.preventDefault()
+    }
+  }
+
   return (
     <li
       className="group flex items-center justify-between gap-2 rounded-lg border p-2 text-sm"
@@ -62,14 +68,22 @@ function AppRelationRow({
       onTouchEnd={longPress.onTouchEnd}
       onTouchCancel={longPress.onTouchCancel}
     >
-      <div className="flex min-w-0 flex-col">
-        <span className="truncate font-medium">{relation.name}</span>
-        <span className="text-xs text-muted-foreground">
-          {STORE_LABEL[relation.store]}
-          {relation.rating != null && ` · ${relation.rating.toFixed(1)}★`}
-          {relation.ratingCount != null && ` (${relation.ratingCount.toLocaleString()})`}
-        </span>
-      </div>
+      <a
+        href={relation.url}
+        target="_blank"
+        rel="noreferrer"
+        onClick={handleLinkClick}
+        className="min-w-0 flex-1"
+      >
+        <div className="flex min-w-0 flex-col">
+          <span className="truncate font-medium">{relation.name}</span>
+          <span className="text-xs text-muted-foreground">
+            {STORE_LABEL[relation.store]}
+            {relation.rating != null && ` · ${relation.rating.toFixed(1)}★`}
+            {relation.ratingCount != null && ` (${relation.ratingCount.toLocaleString()})`}
+          </span>
+        </div>
+      </a>
       {canUnmerge && (
         <Button
           variant="ghost"

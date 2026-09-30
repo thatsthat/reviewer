@@ -134,7 +134,7 @@ export const WithSelect: Story = {
  */
 export const WithSlider: Story = {
   render: () => {
-    const [value, setValue] = React.useState([200, 800]);
+    const [value, setValue] = React.useState<number[]>([200, 800]);
     return (
       <Field>
         <FieldTitle>Price Range</FieldTitle>
@@ -145,7 +145,9 @@ export const WithSlider: Story = {
         </FieldDescription>
         <Slider
           value={value}
-          onValueChange={setValue}
+          onValueChange={(nextValue) =>
+            setValue(Array.isArray(nextValue) ? [...nextValue] : [nextValue])
+          }
           max={1000}
           min={0}
           step={10}

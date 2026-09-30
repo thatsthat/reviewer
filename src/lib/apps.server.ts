@@ -16,6 +16,11 @@ export interface AppRelation {
   name: string
   rating: number | null
   ratingCount: number | null
+  url: string
+}
+
+function getStoredUrl(data: Prisma.JsonValue): string {
+  return (data as { url: string }).url
 }
 
 export async function loadAppDetail(appId: number) {
@@ -32,14 +37,16 @@ export async function loadAppDetail(appId: number) {
       where: { appId },
       select: {
         appleAppId: true,
-        apple: { select: { trackName: true, averageUserRating: true, userRatingCount: true } },
+        apple: {
+          select: { trackName: true, averageUserRating: true, userRatingCount: true, data: true },
+        },
       },
     }),
     prisma.appsGoogleLink.findMany({
       where: { appId },
       select: {
         googleAppId: true,
-        google: { select: { title: true, score: true, ratings: true } },
+        google: { select: { title: true, score: true, ratings: true, data: true } },
       },
     }),
   ])
@@ -51,6 +58,7 @@ export async function loadAppDetail(appId: number) {
       name: link.apple.trackName,
       rating: link.apple.averageUserRating,
       ratingCount: link.apple.userRatingCount,
+      url: getStoredUrl(link.apple.data),
     })),
     ...googleLinks.map((link) => ({
       store: 'google' as const,
@@ -58,6 +66,7 @@ export async function loadAppDetail(appId: number) {
       name: link.google.title,
       rating: link.google.score,
       ratingCount: link.google.ratings,
+      url: getStoredUrl(link.google.data),
     })),
   ]
 

@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "new-york",
+  "style": "base-nova",
   "rsc": false,
   "tsx": true,
   "tailwind": {
@@ -18,7 +18,7 @@
     "hooks": "#/hooks"
   },
   "registries": {
-    "@storybook": "https://registry.lloydrichards.dev/v3/radix/{name}.json"
+    "@storybook": "https://registry.lloydrichards.dev/v3/base/{name}.json"
   },
   "iconLibrary": "lucide"
 }
