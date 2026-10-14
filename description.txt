@@ -1,0 +1,16 @@
+Define what should be seen in each view:
+
+Main view:
+- App list or App grid
+- For each app:
+  - Title
+
+App details view:
+- Title
+- App variants
+- Tags
+- Target user
+
+The tool helps reviewing apps that address some health condition. Apps can be tagged regarding the functions they provide. The main goal with the tool is to help doing a systematic review of the apps and compare them. So it should not be a very complex tool, list the relevant apps, allow the user to add tags to each app, and visualize the apps compared by their functions.
+
+If no user is logged-in, the tool should not allow editing any data. Just list the tags assigned to each app.

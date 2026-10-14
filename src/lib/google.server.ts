@@ -22,7 +22,7 @@ function extractGooglePlayAppId(rawUrl: string): string {
   return appId
 }
 
-function toGoogleRow(details: GooglePlayApp) {
+export function toGoogleRow(details: GooglePlayApp) {
   return {
     title: details.title,
     description: details.description,
@@ -44,7 +44,7 @@ function toGoogleRow(details: GooglePlayApp) {
     iconUrl: details.icon,
     storeUrl: details.url,
     storeUpdatedAt: new Date(details.updated),
-    data: details as unknown as Prisma.InputJsonValue,
+    data: JSON.parse(JSON.stringify(details)) as Prisma.InputJsonValue,
   }
 }
 
