@@ -20,152 +20,66 @@ export type AppleModel = runtime.Types.Result.DefaultSelection<Prisma.$ApplePayl
 
 export type AggregateApple = {
   _count: AppleCountAggregateOutputType | null
-  _avg: AppleAvgAggregateOutputType | null
-  _sum: AppleSumAggregateOutputType | null
   _min: AppleMinAggregateOutputType | null
   _max: AppleMaxAggregateOutputType | null
 }
 
-export type AppleAvgAggregateOutputType = {
-  price: runtime.Decimal | null
-  averageUserRating: number | null
-  userRatingCount: number | null
-}
-
-export type AppleSumAggregateOutputType = {
-  price: runtime.Decimal | null
-  averageUserRating: number | null
-  userRatingCount: number | null
-}
-
 export type AppleMinAggregateOutputType = {
   appId: string | null
-  trackName: string | null
+  title: string | null
   description: string | null
-  artistName: string | null
-  primaryGenreName: string | null
-  version: string | null
-  price: runtime.Decimal | null
-  currency: string | null
-  formattedPrice: string | null
-  averageUserRating: number | null
-  userRatingCount: number | null
-  releaseDate: Date | null
-  currentVersionReleaseDate: Date | null
-  artworkUrl: string | null
-  createdAt: Date | null
-  updatedAt: Date | null
+  url: string | null
+  iconUrl: string | null
+  scrapedAt: Date | null
 }
 
 export type AppleMaxAggregateOutputType = {
   appId: string | null
-  trackName: string | null
+  title: string | null
   description: string | null
-  artistName: string | null
-  primaryGenreName: string | null
-  version: string | null
-  price: runtime.Decimal | null
-  currency: string | null
-  formattedPrice: string | null
-  averageUserRating: number | null
-  userRatingCount: number | null
-  releaseDate: Date | null
-  currentVersionReleaseDate: Date | null
-  artworkUrl: string | null
-  createdAt: Date | null
-  updatedAt: Date | null
+  url: string | null
+  iconUrl: string | null
+  scrapedAt: Date | null
 }
 
 export type AppleCountAggregateOutputType = {
   appId: number
-  trackName: number
+  title: number
   description: number
-  artistName: number
-  primaryGenreName: number
-  version: number
-  price: number
-  currency: number
-  formattedPrice: number
-  averageUserRating: number
-  userRatingCount: number
-  releaseDate: number
-  currentVersionReleaseDate: number
-  artworkUrl: number
+  url: number
+  iconUrl: number
+  scrapedAt: number
   data: number
-  createdAt: number
-  updatedAt: number
   _all: number
 }
 
 
-export type AppleAvgAggregateInputType = {
-  price?: true
-  averageUserRating?: true
-  userRatingCount?: true
-}
-
-export type AppleSumAggregateInputType = {
-  price?: true
-  averageUserRating?: true
-  userRatingCount?: true
-}
-
 export type AppleMinAggregateInputType = {
   appId?: true
-  trackName?: true
+  title?: true
   description?: true
-  artistName?: true
-  primaryGenreName?: true
-  version?: true
-  price?: true
-  currency?: true
-  formattedPrice?: true
-  averageUserRating?: true
-  userRatingCount?: true
-  releaseDate?: true
-  currentVersionReleaseDate?: true
-  artworkUrl?: true
-  createdAt?: true
-  updatedAt?: true
+  url?: true
+  iconUrl?: true
+  scrapedAt?: true
 }
 
 export type AppleMaxAggregateInputType = {
   appId?: true
-  trackName?: true
+  title?: true
   description?: true
-  artistName?: true
-  primaryGenreName?: true
-  version?: true
-  price?: true
-  currency?: true
-  formattedPrice?: true
-  averageUserRating?: true
-  userRatingCount?: true
-  releaseDate?: true
-  currentVersionReleaseDate?: true
-  artworkUrl?: true
-  createdAt?: true
-  updatedAt?: true
+  url?: true
+  iconUrl?: true
+  scrapedAt?: true
 }
 
 export type AppleCountAggregateInputType = {
   appId?: true
-  trackName?: true
+  title?: true
   description?: true
-  artistName?: true
-  primaryGenreName?: true
-  version?: true
-  price?: true
-  currency?: true
-  formattedPrice?: true
-  averageUserRating?: true
-  userRatingCount?: true
-  releaseDate?: true
-  currentVersionReleaseDate?: true
-  artworkUrl?: true
+  url?: true
+  iconUrl?: true
+  scrapedAt?: true
   data?: true
-  createdAt?: true
-  updatedAt?: true
   _all?: true
 }
 
@@ -207,18 +121,6 @@ export type AppleAggregateArgs<ExtArgs extends runtime.Types.Extensions.Internal
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: AppleAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: AppleSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: AppleMinAggregateInputType
@@ -249,33 +151,19 @@ export type AppleGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   _count?: AppleCountAggregateInputType | true
-  _avg?: AppleAvgAggregateInputType
-  _sum?: AppleSumAggregateInputType
   _min?: AppleMinAggregateInputType
   _max?: AppleMaxAggregateInputType
 }
 
 export type AppleGroupByOutputType = {
   appId: string
-  trackName: string
+  title: string
   description: string | null
-  artistName: string | null
-  primaryGenreName: string | null
-  version: string | null
-  price: runtime.Decimal | null
-  currency: string | null
-  formattedPrice: string | null
-  averageUserRating: number | null
-  userRatingCount: number | null
-  releaseDate: Date | null
-  currentVersionReleaseDate: Date | null
-  artworkUrl: string | null
+  url: string | null
+  iconUrl: string | null
+  scrapedAt: Date
   data: runtime.JsonValue
-  createdAt: Date
-  updatedAt: Date
   _count: AppleCountAggregateOutputType | null
-  _avg: AppleAvgAggregateOutputType | null
-  _sum: AppleSumAggregateOutputType | null
   _min: AppleMinAggregateOutputType | null
   _max: AppleMaxAggregateOutputType | null
 }
@@ -300,43 +188,23 @@ export type AppleWhereInput = {
   OR?: Prisma.AppleWhereInput[]
   NOT?: Prisma.AppleWhereInput | Prisma.AppleWhereInput[]
   appId?: Prisma.StringFilter<"Apple"> | string
-  trackName?: Prisma.StringFilter<"Apple"> | string
+  title?: Prisma.StringFilter<"Apple"> | string
   description?: Prisma.StringNullableFilter<"Apple"> | string | null
-  artistName?: Prisma.StringNullableFilter<"Apple"> | string | null
-  primaryGenreName?: Prisma.StringNullableFilter<"Apple"> | string | null
-  version?: Prisma.StringNullableFilter<"Apple"> | string | null
-  price?: Prisma.DecimalNullableFilter<"Apple"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.StringNullableFilter<"Apple"> | string | null
-  formattedPrice?: Prisma.StringNullableFilter<"Apple"> | string | null
-  averageUserRating?: Prisma.FloatNullableFilter<"Apple"> | number | null
-  userRatingCount?: Prisma.IntNullableFilter<"Apple"> | number | null
-  releaseDate?: Prisma.DateTimeNullableFilter<"Apple"> | Date | string | null
-  currentVersionReleaseDate?: Prisma.DateTimeNullableFilter<"Apple"> | Date | string | null
-  artworkUrl?: Prisma.StringNullableFilter<"Apple"> | string | null
+  url?: Prisma.StringNullableFilter<"Apple"> | string | null
+  iconUrl?: Prisma.StringNullableFilter<"Apple"> | string | null
+  scrapedAt?: Prisma.DateTimeFilter<"Apple"> | Date | string
   data?: Prisma.JsonFilter<"Apple">
-  createdAt?: Prisma.DateTimeFilter<"Apple"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Apple"> | Date | string
   link?: Prisma.XOR<Prisma.AppsAppleLinkNullableScalarRelationFilter, Prisma.AppsAppleLinkWhereInput> | null
 }
 
 export type AppleOrderByWithRelationInput = {
   appId?: Prisma.SortOrder
-  trackName?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  artistName?: Prisma.SortOrderInput | Prisma.SortOrder
-  primaryGenreName?: Prisma.SortOrderInput | Prisma.SortOrder
-  version?: Prisma.SortOrderInput | Prisma.SortOrder
-  price?: Prisma.SortOrderInput | Prisma.SortOrder
-  currency?: Prisma.SortOrderInput | Prisma.SortOrder
-  formattedPrice?: Prisma.SortOrderInput | Prisma.SortOrder
-  averageUserRating?: Prisma.SortOrderInput | Prisma.SortOrder
-  userRatingCount?: Prisma.SortOrderInput | Prisma.SortOrder
-  releaseDate?: Prisma.SortOrderInput | Prisma.SortOrder
-  currentVersionReleaseDate?: Prisma.SortOrderInput | Prisma.SortOrder
-  artworkUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  url?: Prisma.SortOrderInput | Prisma.SortOrder
+  iconUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  scrapedAt?: Prisma.SortOrder
   data?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   link?: Prisma.AppsAppleLinkOrderByWithRelationInput
 }
 
@@ -345,48 +213,26 @@ export type AppleWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.AppleWhereInput | Prisma.AppleWhereInput[]
   OR?: Prisma.AppleWhereInput[]
   NOT?: Prisma.AppleWhereInput | Prisma.AppleWhereInput[]
-  trackName?: Prisma.StringFilter<"Apple"> | string
+  title?: Prisma.StringFilter<"Apple"> | string
   description?: Prisma.StringNullableFilter<"Apple"> | string | null
-  artistName?: Prisma.StringNullableFilter<"Apple"> | string | null
-  primaryGenreName?: Prisma.StringNullableFilter<"Apple"> | string | null
-  version?: Prisma.StringNullableFilter<"Apple"> | string | null
-  price?: Prisma.DecimalNullableFilter<"Apple"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.StringNullableFilter<"Apple"> | string | null
-  formattedPrice?: Prisma.StringNullableFilter<"Apple"> | string | null
-  averageUserRating?: Prisma.FloatNullableFilter<"Apple"> | number | null
-  userRatingCount?: Prisma.IntNullableFilter<"Apple"> | number | null
-  releaseDate?: Prisma.DateTimeNullableFilter<"Apple"> | Date | string | null
-  currentVersionReleaseDate?: Prisma.DateTimeNullableFilter<"Apple"> | Date | string | null
-  artworkUrl?: Prisma.StringNullableFilter<"Apple"> | string | null
+  url?: Prisma.StringNullableFilter<"Apple"> | string | null
+  iconUrl?: Prisma.StringNullableFilter<"Apple"> | string | null
+  scrapedAt?: Prisma.DateTimeFilter<"Apple"> | Date | string
   data?: Prisma.JsonFilter<"Apple">
-  createdAt?: Prisma.DateTimeFilter<"Apple"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Apple"> | Date | string
   link?: Prisma.XOR<Prisma.AppsAppleLinkNullableScalarRelationFilter, Prisma.AppsAppleLinkWhereInput> | null
 }, "appId">
 
 export type AppleOrderByWithAggregationInput = {
   appId?: Prisma.SortOrder
-  trackName?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  artistName?: Prisma.SortOrderInput | Prisma.SortOrder
-  primaryGenreName?: Prisma.SortOrderInput | Prisma.SortOrder
-  version?: Prisma.SortOrderInput | Prisma.SortOrder
-  price?: Prisma.SortOrderInput | Prisma.SortOrder
-  currency?: Prisma.SortOrderInput | Prisma.SortOrder
-  formattedPrice?: Prisma.SortOrderInput | Prisma.SortOrder
-  averageUserRating?: Prisma.SortOrderInput | Prisma.SortOrder
-  userRatingCount?: Prisma.SortOrderInput | Prisma.SortOrder
-  releaseDate?: Prisma.SortOrderInput | Prisma.SortOrder
-  currentVersionReleaseDate?: Prisma.SortOrderInput | Prisma.SortOrder
-  artworkUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  url?: Prisma.SortOrderInput | Prisma.SortOrder
+  iconUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  scrapedAt?: Prisma.SortOrder
   data?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   _count?: Prisma.AppleCountOrderByAggregateInput
-  _avg?: Prisma.AppleAvgOrderByAggregateInput
   _max?: Prisma.AppleMaxOrderByAggregateInput
   _min?: Prisma.AppleMinOrderByAggregateInput
-  _sum?: Prisma.AppleSumOrderByAggregateInput
 }
 
 export type AppleScalarWhereWithAggregatesInput = {
@@ -394,236 +240,114 @@ export type AppleScalarWhereWithAggregatesInput = {
   OR?: Prisma.AppleScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AppleScalarWhereWithAggregatesInput | Prisma.AppleScalarWhereWithAggregatesInput[]
   appId?: Prisma.StringWithAggregatesFilter<"Apple"> | string
-  trackName?: Prisma.StringWithAggregatesFilter<"Apple"> | string
+  title?: Prisma.StringWithAggregatesFilter<"Apple"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Apple"> | string | null
-  artistName?: Prisma.StringNullableWithAggregatesFilter<"Apple"> | string | null
-  primaryGenreName?: Prisma.StringNullableWithAggregatesFilter<"Apple"> | string | null
-  version?: Prisma.StringNullableWithAggregatesFilter<"Apple"> | string | null
-  price?: Prisma.DecimalNullableWithAggregatesFilter<"Apple"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.StringNullableWithAggregatesFilter<"Apple"> | string | null
-  formattedPrice?: Prisma.StringNullableWithAggregatesFilter<"Apple"> | string | null
-  averageUserRating?: Prisma.FloatNullableWithAggregatesFilter<"Apple"> | number | null
-  userRatingCount?: Prisma.IntNullableWithAggregatesFilter<"Apple"> | number | null
-  releaseDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Apple"> | Date | string | null
-  currentVersionReleaseDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Apple"> | Date | string | null
-  artworkUrl?: Prisma.StringNullableWithAggregatesFilter<"Apple"> | string | null
+  url?: Prisma.StringNullableWithAggregatesFilter<"Apple"> | string | null
+  iconUrl?: Prisma.StringNullableWithAggregatesFilter<"Apple"> | string | null
+  scrapedAt?: Prisma.DateTimeWithAggregatesFilter<"Apple"> | Date | string
   data?: Prisma.JsonWithAggregatesFilter<"Apple">
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Apple"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Apple"> | Date | string
 }
 
 export type AppleCreateInput = {
   appId: string
-  trackName: string
+  title: string
   description?: string | null
-  artistName?: string | null
-  primaryGenreName?: string | null
-  version?: string | null
-  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: string | null
-  formattedPrice?: string | null
-  averageUserRating?: number | null
-  userRatingCount?: number | null
-  releaseDate?: Date | string | null
-  currentVersionReleaseDate?: Date | string | null
-  artworkUrl?: string | null
+  url?: string | null
+  iconUrl?: string | null
+  scrapedAt?: Date | string
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Date | string
-  updatedAt?: Date | string
   link?: Prisma.AppsAppleLinkCreateNestedOneWithoutAppleInput
 }
 
 export type AppleUncheckedCreateInput = {
   appId: string
-  trackName: string
+  title: string
   description?: string | null
-  artistName?: string | null
-  primaryGenreName?: string | null
-  version?: string | null
-  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: string | null
-  formattedPrice?: string | null
-  averageUserRating?: number | null
-  userRatingCount?: number | null
-  releaseDate?: Date | string | null
-  currentVersionReleaseDate?: Date | string | null
-  artworkUrl?: string | null
+  url?: string | null
+  iconUrl?: string | null
+  scrapedAt?: Date | string
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Date | string
-  updatedAt?: Date | string
   link?: Prisma.AppsAppleLinkUncheckedCreateNestedOneWithoutAppleInput
 }
 
 export type AppleUpdateInput = {
   appId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackName?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  artistName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  primaryGenreName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  formattedPrice?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  averageUserRating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  userRatingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  releaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  currentVersionReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  artworkUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   link?: Prisma.AppsAppleLinkUpdateOneWithoutAppleNestedInput
 }
 
 export type AppleUncheckedUpdateInput = {
   appId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackName?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  artistName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  primaryGenreName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  formattedPrice?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  averageUserRating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  userRatingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  releaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  currentVersionReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  artworkUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   link?: Prisma.AppsAppleLinkUncheckedUpdateOneWithoutAppleNestedInput
 }
 
 export type AppleCreateManyInput = {
   appId: string
-  trackName: string
+  title: string
   description?: string | null
-  artistName?: string | null
-  primaryGenreName?: string | null
-  version?: string | null
-  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: string | null
-  formattedPrice?: string | null
-  averageUserRating?: number | null
-  userRatingCount?: number | null
-  releaseDate?: Date | string | null
-  currentVersionReleaseDate?: Date | string | null
-  artworkUrl?: string | null
+  url?: string | null
+  iconUrl?: string | null
+  scrapedAt?: Date | string
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type AppleUpdateManyMutationInput = {
   appId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackName?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  artistName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  primaryGenreName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  formattedPrice?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  averageUserRating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  userRatingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  releaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  currentVersionReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  artworkUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AppleUncheckedUpdateManyInput = {
   appId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackName?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  artistName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  primaryGenreName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  formattedPrice?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  averageUserRating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  userRatingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  releaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  currentVersionReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  artworkUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AppleCountOrderByAggregateInput = {
   appId?: Prisma.SortOrder
-  trackName?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  artistName?: Prisma.SortOrder
-  primaryGenreName?: Prisma.SortOrder
-  version?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  currency?: Prisma.SortOrder
-  formattedPrice?: Prisma.SortOrder
-  averageUserRating?: Prisma.SortOrder
-  userRatingCount?: Prisma.SortOrder
-  releaseDate?: Prisma.SortOrder
-  currentVersionReleaseDate?: Prisma.SortOrder
-  artworkUrl?: Prisma.SortOrder
+  url?: Prisma.SortOrder
+  iconUrl?: Prisma.SortOrder
+  scrapedAt?: Prisma.SortOrder
   data?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-}
-
-export type AppleAvgOrderByAggregateInput = {
-  price?: Prisma.SortOrder
-  averageUserRating?: Prisma.SortOrder
-  userRatingCount?: Prisma.SortOrder
 }
 
 export type AppleMaxOrderByAggregateInput = {
   appId?: Prisma.SortOrder
-  trackName?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  artistName?: Prisma.SortOrder
-  primaryGenreName?: Prisma.SortOrder
-  version?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  currency?: Prisma.SortOrder
-  formattedPrice?: Prisma.SortOrder
-  averageUserRating?: Prisma.SortOrder
-  userRatingCount?: Prisma.SortOrder
-  releaseDate?: Prisma.SortOrder
-  currentVersionReleaseDate?: Prisma.SortOrder
-  artworkUrl?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
+  url?: Prisma.SortOrder
+  iconUrl?: Prisma.SortOrder
+  scrapedAt?: Prisma.SortOrder
 }
 
 export type AppleMinOrderByAggregateInput = {
   appId?: Prisma.SortOrder
-  trackName?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  artistName?: Prisma.SortOrder
-  primaryGenreName?: Prisma.SortOrder
-  version?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  currency?: Prisma.SortOrder
-  formattedPrice?: Prisma.SortOrder
-  averageUserRating?: Prisma.SortOrder
-  userRatingCount?: Prisma.SortOrder
-  releaseDate?: Prisma.SortOrder
-  currentVersionReleaseDate?: Prisma.SortOrder
-  artworkUrl?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-}
-
-export type AppleSumOrderByAggregateInput = {
-  price?: Prisma.SortOrder
-  averageUserRating?: Prisma.SortOrder
-  userRatingCount?: Prisma.SortOrder
+  url?: Prisma.SortOrder
+  iconUrl?: Prisma.SortOrder
+  scrapedAt?: Prisma.SortOrder
 }
 
 export type AppleScalarRelationFilter = {
@@ -637,34 +361,6 @@ export type StringFieldUpdateOperationsInput = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
-}
-
-export type NullableDecimalFieldUpdateOperationsInput = {
-  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
-}
-
-export type NullableFloatFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -687,42 +383,22 @@ export type AppleUpdateOneRequiredWithoutLinkNestedInput = {
 
 export type AppleCreateWithoutLinkInput = {
   appId: string
-  trackName: string
+  title: string
   description?: string | null
-  artistName?: string | null
-  primaryGenreName?: string | null
-  version?: string | null
-  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: string | null
-  formattedPrice?: string | null
-  averageUserRating?: number | null
-  userRatingCount?: number | null
-  releaseDate?: Date | string | null
-  currentVersionReleaseDate?: Date | string | null
-  artworkUrl?: string | null
+  url?: string | null
+  iconUrl?: string | null
+  scrapedAt?: Date | string
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type AppleUncheckedCreateWithoutLinkInput = {
   appId: string
-  trackName: string
+  title: string
   description?: string | null
-  artistName?: string | null
-  primaryGenreName?: string | null
-  version?: string | null
-  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: string | null
-  formattedPrice?: string | null
-  averageUserRating?: number | null
-  userRatingCount?: number | null
-  releaseDate?: Date | string | null
-  currentVersionReleaseDate?: Date | string | null
-  artworkUrl?: string | null
+  url?: string | null
+  iconUrl?: string | null
+  scrapedAt?: Date | string
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type AppleCreateOrConnectWithoutLinkInput = {
@@ -743,128 +419,68 @@ export type AppleUpdateToOneWithWhereWithoutLinkInput = {
 
 export type AppleUpdateWithoutLinkInput = {
   appId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackName?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  artistName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  primaryGenreName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  formattedPrice?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  averageUserRating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  userRatingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  releaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  currentVersionReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  artworkUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AppleUncheckedUpdateWithoutLinkInput = {
   appId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackName?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  artistName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  primaryGenreName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  formattedPrice?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  averageUserRating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  userRatingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  releaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  currentVersionReleaseDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  artworkUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
 
 export type AppleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   appId?: boolean
-  trackName?: boolean
+  title?: boolean
   description?: boolean
-  artistName?: boolean
-  primaryGenreName?: boolean
-  version?: boolean
-  price?: boolean
-  currency?: boolean
-  formattedPrice?: boolean
-  averageUserRating?: boolean
-  userRatingCount?: boolean
-  releaseDate?: boolean
-  currentVersionReleaseDate?: boolean
-  artworkUrl?: boolean
+  url?: boolean
+  iconUrl?: boolean
+  scrapedAt?: boolean
   data?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
   link?: boolean | Prisma.Apple$linkArgs<ExtArgs>
 }, ExtArgs["result"]["apple"]>
 
 export type AppleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   appId?: boolean
-  trackName?: boolean
+  title?: boolean
   description?: boolean
-  artistName?: boolean
-  primaryGenreName?: boolean
-  version?: boolean
-  price?: boolean
-  currency?: boolean
-  formattedPrice?: boolean
-  averageUserRating?: boolean
-  userRatingCount?: boolean
-  releaseDate?: boolean
-  currentVersionReleaseDate?: boolean
-  artworkUrl?: boolean
+  url?: boolean
+  iconUrl?: boolean
+  scrapedAt?: boolean
   data?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
 }, ExtArgs["result"]["apple"]>
 
 export type AppleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   appId?: boolean
-  trackName?: boolean
+  title?: boolean
   description?: boolean
-  artistName?: boolean
-  primaryGenreName?: boolean
-  version?: boolean
-  price?: boolean
-  currency?: boolean
-  formattedPrice?: boolean
-  averageUserRating?: boolean
-  userRatingCount?: boolean
-  releaseDate?: boolean
-  currentVersionReleaseDate?: boolean
-  artworkUrl?: boolean
+  url?: boolean
+  iconUrl?: boolean
+  scrapedAt?: boolean
   data?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
 }, ExtArgs["result"]["apple"]>
 
 export type AppleSelectScalar = {
   appId?: boolean
-  trackName?: boolean
+  title?: boolean
   description?: boolean
-  artistName?: boolean
-  primaryGenreName?: boolean
-  version?: boolean
-  price?: boolean
-  currency?: boolean
-  formattedPrice?: boolean
-  averageUserRating?: boolean
-  userRatingCount?: boolean
-  releaseDate?: boolean
-  currentVersionReleaseDate?: boolean
-  artworkUrl?: boolean
+  url?: boolean
+  iconUrl?: boolean
+  scrapedAt?: boolean
   data?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
 }
 
-export type AppleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"appId" | "trackName" | "description" | "artistName" | "primaryGenreName" | "version" | "price" | "currency" | "formattedPrice" | "averageUserRating" | "userRatingCount" | "releaseDate" | "currentVersionReleaseDate" | "artworkUrl" | "data" | "createdAt" | "updatedAt", ExtArgs["result"]["apple"]>
+export type AppleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"appId" | "title" | "description" | "url" | "iconUrl" | "scrapedAt" | "data", ExtArgs["result"]["apple"]>
 export type AppleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   link?: boolean | Prisma.Apple$linkArgs<ExtArgs>
 }
@@ -878,22 +494,12 @@ export type $ApplePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     appId: string
-    trackName: string
+    title: string
     description: string | null
-    artistName: string | null
-    primaryGenreName: string | null
-    version: string | null
-    price: runtime.Decimal | null
-    currency: string | null
-    formattedPrice: string | null
-    averageUserRating: number | null
-    userRatingCount: number | null
-    releaseDate: Date | null
-    currentVersionReleaseDate: Date | null
-    artworkUrl: string | null
+    url: string | null
+    iconUrl: string | null
+    scrapedAt: Date
     data: runtime.JsonValue
-    createdAt: Date
-    updatedAt: Date
   }, ExtArgs["result"]["apple"]>
   composites: {}
 }
@@ -1319,22 +925,12 @@ export interface Prisma__AppleClient<T, Null = never, ExtArgs extends runtime.Ty
  */
 export interface AppleFieldRefs {
   readonly appId: Prisma.FieldRef<"Apple", 'String'>
-  readonly trackName: Prisma.FieldRef<"Apple", 'String'>
+  readonly title: Prisma.FieldRef<"Apple", 'String'>
   readonly description: Prisma.FieldRef<"Apple", 'String'>
-  readonly artistName: Prisma.FieldRef<"Apple", 'String'>
-  readonly primaryGenreName: Prisma.FieldRef<"Apple", 'String'>
-  readonly version: Prisma.FieldRef<"Apple", 'String'>
-  readonly price: Prisma.FieldRef<"Apple", 'Decimal'>
-  readonly currency: Prisma.FieldRef<"Apple", 'String'>
-  readonly formattedPrice: Prisma.FieldRef<"Apple", 'String'>
-  readonly averageUserRating: Prisma.FieldRef<"Apple", 'Float'>
-  readonly userRatingCount: Prisma.FieldRef<"Apple", 'Int'>
-  readonly releaseDate: Prisma.FieldRef<"Apple", 'DateTime'>
-  readonly currentVersionReleaseDate: Prisma.FieldRef<"Apple", 'DateTime'>
-  readonly artworkUrl: Prisma.FieldRef<"Apple", 'String'>
+  readonly url: Prisma.FieldRef<"Apple", 'String'>
+  readonly iconUrl: Prisma.FieldRef<"Apple", 'String'>
+  readonly scrapedAt: Prisma.FieldRef<"Apple", 'DateTime'>
   readonly data: Prisma.FieldRef<"Apple", 'Json'>
-  readonly createdAt: Prisma.FieldRef<"Apple", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"Apple", 'DateTime'>
 }
     
 

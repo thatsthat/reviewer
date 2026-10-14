@@ -41,14 +41,18 @@ function buildDetails(overrides: Partial<GooglePlayApp> = {}): GooglePlayApp {
 
 describe('toGoogleRow', () => {
   it('maps known scraper fields onto the row shape', () => {
-    const details = buildDetails({ minInstalls: 1000 })
+    const details = buildDetails()
 
+    const before = Date.now()
     const row = toGoogleRow(details)
+    const after = Date.now()
 
     expect(row.title).toBe('Example App')
-    expect(row.developerId).toBe('example-dev')
-    expect(row.minInstalls).toBe(1000n)
-    expect(row.storeUpdatedAt).toEqual(new Date(1700000000))
+    expect(row.description).toBe('An example app.')
+    expect(row.url).toBe('https://play.google.com/store/apps/details?id=com.example.app')
+    expect(row.iconUrl).toBe('https://example.com/icon.png')
+    expect(row.scrapedAt.getTime()).toBeGreaterThanOrEqual(before)
+    expect(row.scrapedAt.getTime()).toBeLessThanOrEqual(after)
   })
 
   it('rejects scraper payloads that are not JSON-serializable instead of storing them blindly', () => {

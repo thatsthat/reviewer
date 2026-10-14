@@ -32,8 +32,6 @@ export const SubmitSuccess: Story = {
     mocked(addGooglePlayApp).mockResolvedValue({
       appId: 'com.spotify.music',
       title: 'Spotify: Music and Podcasts',
-      score: 4.34,
-      installs: '1,000,000,000+',
     })
   },
   play: async ({ canvas, userEvent }) => {

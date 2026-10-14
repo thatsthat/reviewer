@@ -20,19 +20,14 @@ function extractAppleAppId(rawUrl: string): number {
   return Number(idSegment.slice(2))
 }
 
-function toAppleRow(details: AppleApp) {
+export function toAppleRow(details: AppleApp) {
   return {
-    trackName: details.title,
+    title: details.title,
     description: details.description,
-    artistName: details.developer,
-    primaryGenreName: details.primaryGenre,
-    version: details.version,
-    averageUserRating: details.score,
-    userRatingCount: details.reviews,
-    releaseDate: details.released ? new Date(details.released) : null,
-    currentVersionReleaseDate: details.updated ? new Date(details.updated) : null,
-    artworkUrl: details.icon,
-    data: details as unknown as Prisma.InputJsonValue,
+    url: details.url,
+    iconUrl: details.icon,
+    scrapedAt: new Date(),
+    data: JSON.parse(JSON.stringify(details)) as Prisma.InputJsonValue,
   }
 }
 
@@ -57,15 +52,10 @@ export async function saveAppleApp(url: string) {
       where: { appId },
       create: { appId, ...row },
       update: row,
-      select: {
-        appId: true,
-        trackName: true,
-        averageUserRating: true,
-        userRatingCount: true,
-      },
+      select: { appId: true, title: true },
     })
 
-    await ensureAppleAppLink(tx, appId, record.trackName)
+    await ensureAppleAppLink(tx, appId, record.title)
 
     return record
   })

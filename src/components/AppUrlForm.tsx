@@ -32,8 +32,7 @@ export function AppUrlForm() {
         platform === 'google'
           ? await callAddGooglePlayApp({ data: { url: value } })
           : await callAddAppleApp({ data: { url: value } })
-      const name = 'trackName' in record ? record.trackName : record.title
-      setSuccess(`Saved ${name}.`)
+      setSuccess(`Saved ${record.title}.`)
       form.reset()
       router.invalidate()
     } catch (err) {

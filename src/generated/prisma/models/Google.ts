@@ -20,220 +20,66 @@ export type GoogleModel = runtime.Types.Result.DefaultSelection<Prisma.$GooglePa
 
 export type AggregateGoogle = {
   _count: GoogleCountAggregateOutputType | null
-  _avg: GoogleAvgAggregateOutputType | null
-  _sum: GoogleSumAggregateOutputType | null
   _min: GoogleMinAggregateOutputType | null
   _max: GoogleMaxAggregateOutputType | null
-}
-
-export type GoogleAvgAggregateOutputType = {
-  score: number | null
-  ratings: number | null
-  reviews: number | null
-  minInstalls: number | null
-  price: runtime.Decimal | null
-}
-
-export type GoogleSumAggregateOutputType = {
-  score: number | null
-  ratings: number | null
-  reviews: number | null
-  minInstalls: bigint | null
-  price: runtime.Decimal | null
 }
 
 export type GoogleMinAggregateOutputType = {
   appId: string | null
   title: string | null
   description: string | null
-  summary: string | null
-  developer: string | null
-  developerId: string | null
-  genre: string | null
-  genreId: string | null
-  score: number | null
-  ratings: number | null
-  reviews: number | null
-  installs: string | null
-  minInstalls: bigint | null
-  price: runtime.Decimal | null
-  currency: string | null
-  priceText: string | null
-  free: boolean | null
-  version: string | null
-  androidVersion: string | null
-  contentRating: string | null
-  adSupported: boolean | null
+  url: string | null
   iconUrl: string | null
-  storeUrl: string | null
-  storeUpdatedAt: Date | null
-  createdAt: Date | null
-  updatedAt: Date | null
+  scrapedAt: Date | null
 }
 
 export type GoogleMaxAggregateOutputType = {
   appId: string | null
   title: string | null
   description: string | null
-  summary: string | null
-  developer: string | null
-  developerId: string | null
-  genre: string | null
-  genreId: string | null
-  score: number | null
-  ratings: number | null
-  reviews: number | null
-  installs: string | null
-  minInstalls: bigint | null
-  price: runtime.Decimal | null
-  currency: string | null
-  priceText: string | null
-  free: boolean | null
-  version: string | null
-  androidVersion: string | null
-  contentRating: string | null
-  adSupported: boolean | null
+  url: string | null
   iconUrl: string | null
-  storeUrl: string | null
-  storeUpdatedAt: Date | null
-  createdAt: Date | null
-  updatedAt: Date | null
+  scrapedAt: Date | null
 }
 
 export type GoogleCountAggregateOutputType = {
   appId: number
   title: number
   description: number
-  summary: number
-  developer: number
-  developerId: number
-  genre: number
-  genreId: number
-  score: number
-  ratings: number
-  reviews: number
-  installs: number
-  minInstalls: number
-  price: number
-  currency: number
-  priceText: number
-  free: number
-  version: number
-  androidVersion: number
-  contentRating: number
-  adSupported: number
+  url: number
   iconUrl: number
-  storeUrl: number
-  storeUpdatedAt: number
+  scrapedAt: number
   data: number
-  createdAt: number
-  updatedAt: number
   _all: number
 }
 
-
-export type GoogleAvgAggregateInputType = {
-  score?: true
-  ratings?: true
-  reviews?: true
-  minInstalls?: true
-  price?: true
-}
-
-export type GoogleSumAggregateInputType = {
-  score?: true
-  ratings?: true
-  reviews?: true
-  minInstalls?: true
-  price?: true
-}
 
 export type GoogleMinAggregateInputType = {
   appId?: true
   title?: true
   description?: true
-  summary?: true
-  developer?: true
-  developerId?: true
-  genre?: true
-  genreId?: true
-  score?: true
-  ratings?: true
-  reviews?: true
-  installs?: true
-  minInstalls?: true
-  price?: true
-  currency?: true
-  priceText?: true
-  free?: true
-  version?: true
-  androidVersion?: true
-  contentRating?: true
-  adSupported?: true
+  url?: true
   iconUrl?: true
-  storeUrl?: true
-  storeUpdatedAt?: true
-  createdAt?: true
-  updatedAt?: true
+  scrapedAt?: true
 }
 
 export type GoogleMaxAggregateInputType = {
   appId?: true
   title?: true
   description?: true
-  summary?: true
-  developer?: true
-  developerId?: true
-  genre?: true
-  genreId?: true
-  score?: true
-  ratings?: true
-  reviews?: true
-  installs?: true
-  minInstalls?: true
-  price?: true
-  currency?: true
-  priceText?: true
-  free?: true
-  version?: true
-  androidVersion?: true
-  contentRating?: true
-  adSupported?: true
+  url?: true
   iconUrl?: true
-  storeUrl?: true
-  storeUpdatedAt?: true
-  createdAt?: true
-  updatedAt?: true
+  scrapedAt?: true
 }
 
 export type GoogleCountAggregateInputType = {
   appId?: true
   title?: true
   description?: true
-  summary?: true
-  developer?: true
-  developerId?: true
-  genre?: true
-  genreId?: true
-  score?: true
-  ratings?: true
-  reviews?: true
-  installs?: true
-  minInstalls?: true
-  price?: true
-  currency?: true
-  priceText?: true
-  free?: true
-  version?: true
-  androidVersion?: true
-  contentRating?: true
-  adSupported?: true
+  url?: true
   iconUrl?: true
-  storeUrl?: true
-  storeUpdatedAt?: true
+  scrapedAt?: true
   data?: true
-  createdAt?: true
-  updatedAt?: true
   _all?: true
 }
 
@@ -275,18 +121,6 @@ export type GoogleAggregateArgs<ExtArgs extends runtime.Types.Extensions.Interna
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: GoogleAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: GoogleSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: GoogleMinAggregateInputType
@@ -317,8 +151,6 @@ export type GoogleGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   _count?: GoogleCountAggregateInputType | true
-  _avg?: GoogleAvgAggregateInputType
-  _sum?: GoogleSumAggregateInputType
   _min?: GoogleMinAggregateInputType
   _max?: GoogleMaxAggregateInputType
 }
@@ -327,33 +159,11 @@ export type GoogleGroupByOutputType = {
   appId: string
   title: string
   description: string | null
-  summary: string | null
-  developer: string | null
-  developerId: string | null
-  genre: string | null
-  genreId: string | null
-  score: number | null
-  ratings: number | null
-  reviews: number | null
-  installs: string | null
-  minInstalls: bigint | null
-  price: runtime.Decimal | null
-  currency: string | null
-  priceText: string | null
-  free: boolean | null
-  version: string | null
-  androidVersion: string | null
-  contentRating: string | null
-  adSupported: boolean | null
+  url: string | null
   iconUrl: string | null
-  storeUrl: string | null
-  storeUpdatedAt: Date | null
+  scrapedAt: Date
   data: runtime.JsonValue
-  createdAt: Date
-  updatedAt: Date
   _count: GoogleCountAggregateOutputType | null
-  _avg: GoogleAvgAggregateOutputType | null
-  _sum: GoogleSumAggregateOutputType | null
   _min: GoogleMinAggregateOutputType | null
   _max: GoogleMaxAggregateOutputType | null
 }
@@ -380,30 +190,10 @@ export type GoogleWhereInput = {
   appId?: Prisma.StringFilter<"Google"> | string
   title?: Prisma.StringFilter<"Google"> | string
   description?: Prisma.StringNullableFilter<"Google"> | string | null
-  summary?: Prisma.StringNullableFilter<"Google"> | string | null
-  developer?: Prisma.StringNullableFilter<"Google"> | string | null
-  developerId?: Prisma.StringNullableFilter<"Google"> | string | null
-  genre?: Prisma.StringNullableFilter<"Google"> | string | null
-  genreId?: Prisma.StringNullableFilter<"Google"> | string | null
-  score?: Prisma.FloatNullableFilter<"Google"> | number | null
-  ratings?: Prisma.IntNullableFilter<"Google"> | number | null
-  reviews?: Prisma.IntNullableFilter<"Google"> | number | null
-  installs?: Prisma.StringNullableFilter<"Google"> | string | null
-  minInstalls?: Prisma.BigIntNullableFilter<"Google"> | bigint | number | null
-  price?: Prisma.DecimalNullableFilter<"Google"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.StringNullableFilter<"Google"> | string | null
-  priceText?: Prisma.StringNullableFilter<"Google"> | string | null
-  free?: Prisma.BoolNullableFilter<"Google"> | boolean | null
-  version?: Prisma.StringNullableFilter<"Google"> | string | null
-  androidVersion?: Prisma.StringNullableFilter<"Google"> | string | null
-  contentRating?: Prisma.StringNullableFilter<"Google"> | string | null
-  adSupported?: Prisma.BoolNullableFilter<"Google"> | boolean | null
+  url?: Prisma.StringNullableFilter<"Google"> | string | null
   iconUrl?: Prisma.StringNullableFilter<"Google"> | string | null
-  storeUrl?: Prisma.StringNullableFilter<"Google"> | string | null
-  storeUpdatedAt?: Prisma.DateTimeNullableFilter<"Google"> | Date | string | null
+  scrapedAt?: Prisma.DateTimeFilter<"Google"> | Date | string
   data?: Prisma.JsonFilter<"Google">
-  createdAt?: Prisma.DateTimeFilter<"Google"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Google"> | Date | string
   link?: Prisma.XOR<Prisma.AppsGoogleLinkNullableScalarRelationFilter, Prisma.AppsGoogleLinkWhereInput> | null
 }
 
@@ -411,30 +201,10 @@ export type GoogleOrderByWithRelationInput = {
   appId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  summary?: Prisma.SortOrderInput | Prisma.SortOrder
-  developer?: Prisma.SortOrderInput | Prisma.SortOrder
-  developerId?: Prisma.SortOrderInput | Prisma.SortOrder
-  genre?: Prisma.SortOrderInput | Prisma.SortOrder
-  genreId?: Prisma.SortOrderInput | Prisma.SortOrder
-  score?: Prisma.SortOrderInput | Prisma.SortOrder
-  ratings?: Prisma.SortOrderInput | Prisma.SortOrder
-  reviews?: Prisma.SortOrderInput | Prisma.SortOrder
-  installs?: Prisma.SortOrderInput | Prisma.SortOrder
-  minInstalls?: Prisma.SortOrderInput | Prisma.SortOrder
-  price?: Prisma.SortOrderInput | Prisma.SortOrder
-  currency?: Prisma.SortOrderInput | Prisma.SortOrder
-  priceText?: Prisma.SortOrderInput | Prisma.SortOrder
-  free?: Prisma.SortOrderInput | Prisma.SortOrder
-  version?: Prisma.SortOrderInput | Prisma.SortOrder
-  androidVersion?: Prisma.SortOrderInput | Prisma.SortOrder
-  contentRating?: Prisma.SortOrderInput | Prisma.SortOrder
-  adSupported?: Prisma.SortOrderInput | Prisma.SortOrder
+  url?: Prisma.SortOrderInput | Prisma.SortOrder
   iconUrl?: Prisma.SortOrderInput | Prisma.SortOrder
-  storeUrl?: Prisma.SortOrderInput | Prisma.SortOrder
-  storeUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  scrapedAt?: Prisma.SortOrder
   data?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   link?: Prisma.AppsGoogleLinkOrderByWithRelationInput
 }
 
@@ -445,30 +215,10 @@ export type GoogleWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.GoogleWhereInput | Prisma.GoogleWhereInput[]
   title?: Prisma.StringFilter<"Google"> | string
   description?: Prisma.StringNullableFilter<"Google"> | string | null
-  summary?: Prisma.StringNullableFilter<"Google"> | string | null
-  developer?: Prisma.StringNullableFilter<"Google"> | string | null
-  developerId?: Prisma.StringNullableFilter<"Google"> | string | null
-  genre?: Prisma.StringNullableFilter<"Google"> | string | null
-  genreId?: Prisma.StringNullableFilter<"Google"> | string | null
-  score?: Prisma.FloatNullableFilter<"Google"> | number | null
-  ratings?: Prisma.IntNullableFilter<"Google"> | number | null
-  reviews?: Prisma.IntNullableFilter<"Google"> | number | null
-  installs?: Prisma.StringNullableFilter<"Google"> | string | null
-  minInstalls?: Prisma.BigIntNullableFilter<"Google"> | bigint | number | null
-  price?: Prisma.DecimalNullableFilter<"Google"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.StringNullableFilter<"Google"> | string | null
-  priceText?: Prisma.StringNullableFilter<"Google"> | string | null
-  free?: Prisma.BoolNullableFilter<"Google"> | boolean | null
-  version?: Prisma.StringNullableFilter<"Google"> | string | null
-  androidVersion?: Prisma.StringNullableFilter<"Google"> | string | null
-  contentRating?: Prisma.StringNullableFilter<"Google"> | string | null
-  adSupported?: Prisma.BoolNullableFilter<"Google"> | boolean | null
+  url?: Prisma.StringNullableFilter<"Google"> | string | null
   iconUrl?: Prisma.StringNullableFilter<"Google"> | string | null
-  storeUrl?: Prisma.StringNullableFilter<"Google"> | string | null
-  storeUpdatedAt?: Prisma.DateTimeNullableFilter<"Google"> | Date | string | null
+  scrapedAt?: Prisma.DateTimeFilter<"Google"> | Date | string
   data?: Prisma.JsonFilter<"Google">
-  createdAt?: Prisma.DateTimeFilter<"Google"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Google"> | Date | string
   link?: Prisma.XOR<Prisma.AppsGoogleLinkNullableScalarRelationFilter, Prisma.AppsGoogleLinkWhereInput> | null
 }, "appId">
 
@@ -476,35 +226,13 @@ export type GoogleOrderByWithAggregationInput = {
   appId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  summary?: Prisma.SortOrderInput | Prisma.SortOrder
-  developer?: Prisma.SortOrderInput | Prisma.SortOrder
-  developerId?: Prisma.SortOrderInput | Prisma.SortOrder
-  genre?: Prisma.SortOrderInput | Prisma.SortOrder
-  genreId?: Prisma.SortOrderInput | Prisma.SortOrder
-  score?: Prisma.SortOrderInput | Prisma.SortOrder
-  ratings?: Prisma.SortOrderInput | Prisma.SortOrder
-  reviews?: Prisma.SortOrderInput | Prisma.SortOrder
-  installs?: Prisma.SortOrderInput | Prisma.SortOrder
-  minInstalls?: Prisma.SortOrderInput | Prisma.SortOrder
-  price?: Prisma.SortOrderInput | Prisma.SortOrder
-  currency?: Prisma.SortOrderInput | Prisma.SortOrder
-  priceText?: Prisma.SortOrderInput | Prisma.SortOrder
-  free?: Prisma.SortOrderInput | Prisma.SortOrder
-  version?: Prisma.SortOrderInput | Prisma.SortOrder
-  androidVersion?: Prisma.SortOrderInput | Prisma.SortOrder
-  contentRating?: Prisma.SortOrderInput | Prisma.SortOrder
-  adSupported?: Prisma.SortOrderInput | Prisma.SortOrder
+  url?: Prisma.SortOrderInput | Prisma.SortOrder
   iconUrl?: Prisma.SortOrderInput | Prisma.SortOrder
-  storeUrl?: Prisma.SortOrderInput | Prisma.SortOrder
-  storeUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  scrapedAt?: Prisma.SortOrder
   data?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   _count?: Prisma.GoogleCountOrderByAggregateInput
-  _avg?: Prisma.GoogleAvgOrderByAggregateInput
   _max?: Prisma.GoogleMaxOrderByAggregateInput
   _min?: Prisma.GoogleMinOrderByAggregateInput
-  _sum?: Prisma.GoogleSumOrderByAggregateInput
 }
 
 export type GoogleScalarWhereWithAggregatesInput = {
@@ -514,60 +242,20 @@ export type GoogleScalarWhereWithAggregatesInput = {
   appId?: Prisma.StringWithAggregatesFilter<"Google"> | string
   title?: Prisma.StringWithAggregatesFilter<"Google"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  summary?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  developer?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  developerId?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  genre?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  genreId?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  score?: Prisma.FloatNullableWithAggregatesFilter<"Google"> | number | null
-  ratings?: Prisma.IntNullableWithAggregatesFilter<"Google"> | number | null
-  reviews?: Prisma.IntNullableWithAggregatesFilter<"Google"> | number | null
-  installs?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  minInstalls?: Prisma.BigIntNullableWithAggregatesFilter<"Google"> | bigint | number | null
-  price?: Prisma.DecimalNullableWithAggregatesFilter<"Google"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  priceText?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  free?: Prisma.BoolNullableWithAggregatesFilter<"Google"> | boolean | null
-  version?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  androidVersion?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  contentRating?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  adSupported?: Prisma.BoolNullableWithAggregatesFilter<"Google"> | boolean | null
+  url?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
   iconUrl?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  storeUrl?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
-  storeUpdatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Google"> | Date | string | null
+  scrapedAt?: Prisma.DateTimeWithAggregatesFilter<"Google"> | Date | string
   data?: Prisma.JsonWithAggregatesFilter<"Google">
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Google"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Google"> | Date | string
 }
 
 export type GoogleCreateInput = {
   appId: string
   title: string
   description?: string | null
-  summary?: string | null
-  developer?: string | null
-  developerId?: string | null
-  genre?: string | null
-  genreId?: string | null
-  score?: number | null
-  ratings?: number | null
-  reviews?: number | null
-  installs?: string | null
-  minInstalls?: bigint | number | null
-  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: string | null
-  priceText?: string | null
-  free?: boolean | null
-  version?: string | null
-  androidVersion?: string | null
-  contentRating?: string | null
-  adSupported?: boolean | null
+  url?: string | null
   iconUrl?: string | null
-  storeUrl?: string | null
-  storeUpdatedAt?: Date | string | null
+  scrapedAt?: Date | string
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Date | string
-  updatedAt?: Date | string
   link?: Prisma.AppsGoogleLinkCreateNestedOneWithoutGoogleInput
 }
 
@@ -575,30 +263,10 @@ export type GoogleUncheckedCreateInput = {
   appId: string
   title: string
   description?: string | null
-  summary?: string | null
-  developer?: string | null
-  developerId?: string | null
-  genre?: string | null
-  genreId?: string | null
-  score?: number | null
-  ratings?: number | null
-  reviews?: number | null
-  installs?: string | null
-  minInstalls?: bigint | number | null
-  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: string | null
-  priceText?: string | null
-  free?: boolean | null
-  version?: string | null
-  androidVersion?: string | null
-  contentRating?: string | null
-  adSupported?: boolean | null
+  url?: string | null
   iconUrl?: string | null
-  storeUrl?: string | null
-  storeUpdatedAt?: Date | string | null
+  scrapedAt?: Date | string
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Date | string
-  updatedAt?: Date | string
   link?: Prisma.AppsGoogleLinkUncheckedCreateNestedOneWithoutGoogleInput
 }
 
@@ -606,30 +274,10 @@ export type GoogleUpdateInput = {
   appId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  developer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  developerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  genre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  genreId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  score?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  ratings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  reviews?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  installs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minInstalls?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  priceText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  androidVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contentRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  adSupported?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  storeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  storeUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   link?: Prisma.AppsGoogleLinkUpdateOneWithoutGoogleNestedInput
 }
 
@@ -637,30 +285,10 @@ export type GoogleUncheckedUpdateInput = {
   appId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  developer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  developerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  genre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  genreId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  score?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  ratings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  reviews?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  installs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minInstalls?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  priceText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  androidVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contentRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  adSupported?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  storeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  storeUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   link?: Prisma.AppsGoogleLinkUncheckedUpdateOneWithoutGoogleNestedInput
 }
 
@@ -668,211 +296,63 @@ export type GoogleCreateManyInput = {
   appId: string
   title: string
   description?: string | null
-  summary?: string | null
-  developer?: string | null
-  developerId?: string | null
-  genre?: string | null
-  genreId?: string | null
-  score?: number | null
-  ratings?: number | null
-  reviews?: number | null
-  installs?: string | null
-  minInstalls?: bigint | number | null
-  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: string | null
-  priceText?: string | null
-  free?: boolean | null
-  version?: string | null
-  androidVersion?: string | null
-  contentRating?: string | null
-  adSupported?: boolean | null
+  url?: string | null
   iconUrl?: string | null
-  storeUrl?: string | null
-  storeUpdatedAt?: Date | string | null
+  scrapedAt?: Date | string
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type GoogleUpdateManyMutationInput = {
   appId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  developer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  developerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  genre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  genreId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  score?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  ratings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  reviews?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  installs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minInstalls?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  priceText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  androidVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contentRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  adSupported?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  storeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  storeUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GoogleUncheckedUpdateManyInput = {
   appId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  developer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  developerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  genre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  genreId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  score?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  ratings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  reviews?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  installs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minInstalls?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  priceText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  androidVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contentRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  adSupported?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  storeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  storeUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GoogleCountOrderByAggregateInput = {
   appId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  summary?: Prisma.SortOrder
-  developer?: Prisma.SortOrder
-  developerId?: Prisma.SortOrder
-  genre?: Prisma.SortOrder
-  genreId?: Prisma.SortOrder
-  score?: Prisma.SortOrder
-  ratings?: Prisma.SortOrder
-  reviews?: Prisma.SortOrder
-  installs?: Prisma.SortOrder
-  minInstalls?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  currency?: Prisma.SortOrder
-  priceText?: Prisma.SortOrder
-  free?: Prisma.SortOrder
-  version?: Prisma.SortOrder
-  androidVersion?: Prisma.SortOrder
-  contentRating?: Prisma.SortOrder
-  adSupported?: Prisma.SortOrder
+  url?: Prisma.SortOrder
   iconUrl?: Prisma.SortOrder
-  storeUrl?: Prisma.SortOrder
-  storeUpdatedAt?: Prisma.SortOrder
+  scrapedAt?: Prisma.SortOrder
   data?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-}
-
-export type GoogleAvgOrderByAggregateInput = {
-  score?: Prisma.SortOrder
-  ratings?: Prisma.SortOrder
-  reviews?: Prisma.SortOrder
-  minInstalls?: Prisma.SortOrder
-  price?: Prisma.SortOrder
 }
 
 export type GoogleMaxOrderByAggregateInput = {
   appId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  summary?: Prisma.SortOrder
-  developer?: Prisma.SortOrder
-  developerId?: Prisma.SortOrder
-  genre?: Prisma.SortOrder
-  genreId?: Prisma.SortOrder
-  score?: Prisma.SortOrder
-  ratings?: Prisma.SortOrder
-  reviews?: Prisma.SortOrder
-  installs?: Prisma.SortOrder
-  minInstalls?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  currency?: Prisma.SortOrder
-  priceText?: Prisma.SortOrder
-  free?: Prisma.SortOrder
-  version?: Prisma.SortOrder
-  androidVersion?: Prisma.SortOrder
-  contentRating?: Prisma.SortOrder
-  adSupported?: Prisma.SortOrder
+  url?: Prisma.SortOrder
   iconUrl?: Prisma.SortOrder
-  storeUrl?: Prisma.SortOrder
-  storeUpdatedAt?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
+  scrapedAt?: Prisma.SortOrder
 }
 
 export type GoogleMinOrderByAggregateInput = {
   appId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  summary?: Prisma.SortOrder
-  developer?: Prisma.SortOrder
-  developerId?: Prisma.SortOrder
-  genre?: Prisma.SortOrder
-  genreId?: Prisma.SortOrder
-  score?: Prisma.SortOrder
-  ratings?: Prisma.SortOrder
-  reviews?: Prisma.SortOrder
-  installs?: Prisma.SortOrder
-  minInstalls?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  currency?: Prisma.SortOrder
-  priceText?: Prisma.SortOrder
-  free?: Prisma.SortOrder
-  version?: Prisma.SortOrder
-  androidVersion?: Prisma.SortOrder
-  contentRating?: Prisma.SortOrder
-  adSupported?: Prisma.SortOrder
+  url?: Prisma.SortOrder
   iconUrl?: Prisma.SortOrder
-  storeUrl?: Prisma.SortOrder
-  storeUpdatedAt?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-}
-
-export type GoogleSumOrderByAggregateInput = {
-  score?: Prisma.SortOrder
-  ratings?: Prisma.SortOrder
-  reviews?: Prisma.SortOrder
-  minInstalls?: Prisma.SortOrder
-  price?: Prisma.SortOrder
+  scrapedAt?: Prisma.SortOrder
 }
 
 export type GoogleScalarRelationFilter = {
   is?: Prisma.GoogleWhereInput
   isNot?: Prisma.GoogleWhereInput
-}
-
-export type NullableBigIntFieldUpdateOperationsInput = {
-  set?: bigint | number | null
-  increment?: bigint | number
-  decrement?: bigint | number
-  multiply?: bigint | number
-  divide?: bigint | number
-}
-
-export type NullableBoolFieldUpdateOperationsInput = {
-  set?: boolean | null
 }
 
 export type GoogleCreateNestedOneWithoutLinkInput = {
@@ -893,60 +373,20 @@ export type GoogleCreateWithoutLinkInput = {
   appId: string
   title: string
   description?: string | null
-  summary?: string | null
-  developer?: string | null
-  developerId?: string | null
-  genre?: string | null
-  genreId?: string | null
-  score?: number | null
-  ratings?: number | null
-  reviews?: number | null
-  installs?: string | null
-  minInstalls?: bigint | number | null
-  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: string | null
-  priceText?: string | null
-  free?: boolean | null
-  version?: string | null
-  androidVersion?: string | null
-  contentRating?: string | null
-  adSupported?: boolean | null
+  url?: string | null
   iconUrl?: string | null
-  storeUrl?: string | null
-  storeUpdatedAt?: Date | string | null
+  scrapedAt?: Date | string
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type GoogleUncheckedCreateWithoutLinkInput = {
   appId: string
   title: string
   description?: string | null
-  summary?: string | null
-  developer?: string | null
-  developerId?: string | null
-  genre?: string | null
-  genreId?: string | null
-  score?: number | null
-  ratings?: number | null
-  reviews?: number | null
-  installs?: string | null
-  minInstalls?: bigint | number | null
-  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: string | null
-  priceText?: string | null
-  free?: boolean | null
-  version?: string | null
-  androidVersion?: string | null
-  contentRating?: string | null
-  adSupported?: boolean | null
+  url?: string | null
   iconUrl?: string | null
-  storeUrl?: string | null
-  storeUpdatedAt?: Date | string | null
+  scrapedAt?: Date | string
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type GoogleCreateOrConnectWithoutLinkInput = {
@@ -969,60 +409,20 @@ export type GoogleUpdateWithoutLinkInput = {
   appId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  developer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  developerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  genre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  genreId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  score?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  ratings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  reviews?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  installs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minInstalls?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  priceText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  androidVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contentRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  adSupported?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  storeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  storeUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GoogleUncheckedUpdateWithoutLinkInput = {
   appId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  developer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  developerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  genre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  genreId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  score?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  ratings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  reviews?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  installs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minInstalls?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  currency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  priceText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  free?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  androidVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contentRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  adSupported?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  storeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  storeUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -1031,30 +431,10 @@ export type GoogleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   appId?: boolean
   title?: boolean
   description?: boolean
-  summary?: boolean
-  developer?: boolean
-  developerId?: boolean
-  genre?: boolean
-  genreId?: boolean
-  score?: boolean
-  ratings?: boolean
-  reviews?: boolean
-  installs?: boolean
-  minInstalls?: boolean
-  price?: boolean
-  currency?: boolean
-  priceText?: boolean
-  free?: boolean
-  version?: boolean
-  androidVersion?: boolean
-  contentRating?: boolean
-  adSupported?: boolean
+  url?: boolean
   iconUrl?: boolean
-  storeUrl?: boolean
-  storeUpdatedAt?: boolean
+  scrapedAt?: boolean
   data?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
   link?: boolean | Prisma.Google$linkArgs<ExtArgs>
 }, ExtArgs["result"]["google"]>
 
@@ -1062,93 +442,33 @@ export type GoogleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   appId?: boolean
   title?: boolean
   description?: boolean
-  summary?: boolean
-  developer?: boolean
-  developerId?: boolean
-  genre?: boolean
-  genreId?: boolean
-  score?: boolean
-  ratings?: boolean
-  reviews?: boolean
-  installs?: boolean
-  minInstalls?: boolean
-  price?: boolean
-  currency?: boolean
-  priceText?: boolean
-  free?: boolean
-  version?: boolean
-  androidVersion?: boolean
-  contentRating?: boolean
-  adSupported?: boolean
+  url?: boolean
   iconUrl?: boolean
-  storeUrl?: boolean
-  storeUpdatedAt?: boolean
+  scrapedAt?: boolean
   data?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
 }, ExtArgs["result"]["google"]>
 
 export type GoogleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   appId?: boolean
   title?: boolean
   description?: boolean
-  summary?: boolean
-  developer?: boolean
-  developerId?: boolean
-  genre?: boolean
-  genreId?: boolean
-  score?: boolean
-  ratings?: boolean
-  reviews?: boolean
-  installs?: boolean
-  minInstalls?: boolean
-  price?: boolean
-  currency?: boolean
-  priceText?: boolean
-  free?: boolean
-  version?: boolean
-  androidVersion?: boolean
-  contentRating?: boolean
-  adSupported?: boolean
+  url?: boolean
   iconUrl?: boolean
-  storeUrl?: boolean
-  storeUpdatedAt?: boolean
+  scrapedAt?: boolean
   data?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
 }, ExtArgs["result"]["google"]>
 
 export type GoogleSelectScalar = {
   appId?: boolean
   title?: boolean
   description?: boolean
-  summary?: boolean
-  developer?: boolean
-  developerId?: boolean
-  genre?: boolean
-  genreId?: boolean
-  score?: boolean
-  ratings?: boolean
-  reviews?: boolean
-  installs?: boolean
-  minInstalls?: boolean
-  price?: boolean
-  currency?: boolean
-  priceText?: boolean
-  free?: boolean
-  version?: boolean
-  androidVersion?: boolean
-  contentRating?: boolean
-  adSupported?: boolean
+  url?: boolean
   iconUrl?: boolean
-  storeUrl?: boolean
-  storeUpdatedAt?: boolean
+  scrapedAt?: boolean
   data?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
 }
 
-export type GoogleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"appId" | "title" | "description" | "summary" | "developer" | "developerId" | "genre" | "genreId" | "score" | "ratings" | "reviews" | "installs" | "minInstalls" | "price" | "currency" | "priceText" | "free" | "version" | "androidVersion" | "contentRating" | "adSupported" | "iconUrl" | "storeUrl" | "storeUpdatedAt" | "data" | "createdAt" | "updatedAt", ExtArgs["result"]["google"]>
+export type GoogleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"appId" | "title" | "description" | "url" | "iconUrl" | "scrapedAt" | "data", ExtArgs["result"]["google"]>
 export type GoogleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   link?: boolean | Prisma.Google$linkArgs<ExtArgs>
 }
@@ -1164,30 +484,10 @@ export type $GooglePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     appId: string
     title: string
     description: string | null
-    summary: string | null
-    developer: string | null
-    developerId: string | null
-    genre: string | null
-    genreId: string | null
-    score: number | null
-    ratings: number | null
-    reviews: number | null
-    installs: string | null
-    minInstalls: bigint | null
-    price: runtime.Decimal | null
-    currency: string | null
-    priceText: string | null
-    free: boolean | null
-    version: string | null
-    androidVersion: string | null
-    contentRating: string | null
-    adSupported: boolean | null
+    url: string | null
     iconUrl: string | null
-    storeUrl: string | null
-    storeUpdatedAt: Date | null
+    scrapedAt: Date
     data: runtime.JsonValue
-    createdAt: Date
-    updatedAt: Date
   }, ExtArgs["result"]["google"]>
   composites: {}
 }
@@ -1615,30 +915,10 @@ export interface GoogleFieldRefs {
   readonly appId: Prisma.FieldRef<"Google", 'String'>
   readonly title: Prisma.FieldRef<"Google", 'String'>
   readonly description: Prisma.FieldRef<"Google", 'String'>
-  readonly summary: Prisma.FieldRef<"Google", 'String'>
-  readonly developer: Prisma.FieldRef<"Google", 'String'>
-  readonly developerId: Prisma.FieldRef<"Google", 'String'>
-  readonly genre: Prisma.FieldRef<"Google", 'String'>
-  readonly genreId: Prisma.FieldRef<"Google", 'String'>
-  readonly score: Prisma.FieldRef<"Google", 'Float'>
-  readonly ratings: Prisma.FieldRef<"Google", 'Int'>
-  readonly reviews: Prisma.FieldRef<"Google", 'Int'>
-  readonly installs: Prisma.FieldRef<"Google", 'String'>
-  readonly minInstalls: Prisma.FieldRef<"Google", 'BigInt'>
-  readonly price: Prisma.FieldRef<"Google", 'Decimal'>
-  readonly currency: Prisma.FieldRef<"Google", 'String'>
-  readonly priceText: Prisma.FieldRef<"Google", 'String'>
-  readonly free: Prisma.FieldRef<"Google", 'Boolean'>
-  readonly version: Prisma.FieldRef<"Google", 'String'>
-  readonly androidVersion: Prisma.FieldRef<"Google", 'String'>
-  readonly contentRating: Prisma.FieldRef<"Google", 'String'>
-  readonly adSupported: Prisma.FieldRef<"Google", 'Boolean'>
+  readonly url: Prisma.FieldRef<"Google", 'String'>
   readonly iconUrl: Prisma.FieldRef<"Google", 'String'>
-  readonly storeUrl: Prisma.FieldRef<"Google", 'String'>
-  readonly storeUpdatedAt: Prisma.FieldRef<"Google", 'DateTime'>
+  readonly scrapedAt: Prisma.FieldRef<"Google", 'DateTime'>
   readonly data: Prisma.FieldRef<"Google", 'Json'>
-  readonly createdAt: Prisma.FieldRef<"Google", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"Google", 'DateTime'>
 }
     
 

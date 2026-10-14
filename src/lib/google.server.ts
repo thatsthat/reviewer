@@ -26,24 +26,9 @@ export function toGoogleRow(details: GooglePlayApp) {
   return {
     title: details.title,
     description: details.description,
-    summary: details.summary,
-    developer: details.developer,
-    developerId: details.developerId,
-    genre: details.genre,
-    genreId: details.genreId,
-    score: details.score,
-    ratings: details.ratings,
-    reviews: details.reviews,
-    installs: details.installs,
-    minInstalls:
-      details.minInstalls != null ? BigInt(details.minInstalls) : null,
-    version: details.version,
-    androidVersion: details.androidVersion,
-    contentRating: details.contentRating,
-    adSupported: details.adSupported,
+    url: details.url,
     iconUrl: details.icon,
-    storeUrl: details.url,
-    storeUpdatedAt: new Date(details.updated),
+    scrapedAt: new Date(),
     data: JSON.parse(JSON.stringify(details)) as Prisma.InputJsonValue,
   }
 }
@@ -68,7 +53,7 @@ export async function saveGooglePlayApp(url: string) {
       where: { appId: details.appId },
       create: { appId: details.appId, ...row },
       update: row,
-      select: { appId: true, title: true, score: true, installs: true },
+      select: { appId: true, title: true },
     })
 
     await ensureGoogleAppLink(tx, record.appId, record.title)

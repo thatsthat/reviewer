@@ -23,6 +23,14 @@ function getStoredUrl(data: Prisma.JsonValue): string {
   return (data as { url: string }).url
 }
 
+function getStoredRating(data: Prisma.JsonValue): number | null {
+  return (data as { score?: number }).score ?? null
+}
+
+function getStoredRatingCount(data: Prisma.JsonValue): number | null {
+  return (data as { reviews?: number }).reviews ?? null
+}
+
 export async function loadAppDetail(appId: number) {
   const app = await prisma.app.findUnique({
     where: { id: appId },
@@ -37,16 +45,14 @@ export async function loadAppDetail(appId: number) {
       where: { appId },
       select: {
         appleAppId: true,
-        apple: {
-          select: { trackName: true, averageUserRating: true, userRatingCount: true, data: true },
-        },
+        apple: { select: { title: true, data: true } },
       },
     }),
     prisma.appsGoogleLink.findMany({
       where: { appId },
       select: {
         googleAppId: true,
-        google: { select: { title: true, score: true, ratings: true, data: true } },
+        google: { select: { title: true, data: true } },
       },
     }),
   ])
@@ -55,17 +61,17 @@ export async function loadAppDetail(appId: number) {
     ...appleLinks.map((link) => ({
       store: 'apple' as const,
       storeAppId: link.appleAppId,
-      name: link.apple.trackName,
-      rating: link.apple.averageUserRating,
-      ratingCount: link.apple.userRatingCount,
+      name: link.apple.title,
+      rating: getStoredRating(link.apple.data),
+      ratingCount: getStoredRatingCount(link.apple.data),
       url: getStoredUrl(link.apple.data),
     })),
     ...googleLinks.map((link) => ({
       store: 'google' as const,
       storeAppId: link.googleAppId,
       name: link.google.title,
-      rating: link.google.score,
-      ratingCount: link.google.ratings,
+      rating: getStoredRating(link.google.data),
+      ratingCount: getStoredRatingCount(link.google.data),
       url: getStoredUrl(link.google.data),
     })),
   ]
@@ -119,9 +125,9 @@ export async function splitAppFromGroup(store: 'apple' | 'google', storeAppId: s
     if (store === 'apple') {
       const link = await tx.appsAppleLink.findUniqueOrThrow({
         where: { appleAppId: storeAppId },
-        include: { apple: { select: { trackName: true } } },
+        include: { apple: { select: { title: true } } },
       })
-      title = link.apple.trackName
+      title = link.apple.title
       sourceAppId = link.appId
       await tx.appsAppleLink.delete({ where: { appleAppId: storeAppId } })
     } else {
@@ -145,14 +151,14 @@ export async function splitAppFromGroup(store: 'apple' | 'google', storeAppId: s
     const [remainingApple, remainingGoogle] = await Promise.all([
       tx.appsAppleLink.findFirst({
         where: { appId: sourceAppId },
-        include: { apple: { select: { trackName: true } } },
+        include: { apple: { select: { title: true } } },
       }),
       tx.appsGoogleLink.findFirst({
         where: { appId: sourceAppId },
         include: { google: { select: { title: true } } },
       }),
     ])
-    const remainingTitle = remainingApple?.apple.trackName ?? remainingGoogle?.google.title
+    const remainingTitle = remainingApple?.apple.title ?? remainingGoogle?.google.title
 
     if (remainingTitle) {
       await tx.app.update({

@@ -8,23 +8,13 @@ datasource db {
 }
 
 model Apple {
-  appId                     String    @id @map("app_id")
-  trackName                 String    @map("track_name")
-  description               String?
-  artistName                String?   @map("artist_name")
-  primaryGenreName          String?   @map("primary_genre_name")
-  version                   String?
-  price                     Decimal?  @db.Decimal
-  currency                  String?
-  formattedPrice            String?   @map("formatted_price")
-  averageUserRating         Float?    @map("average_user_rating") @db.Real
-  userRatingCount           Int?      @map("user_rating_count")
-  releaseDate               DateTime? @map("release_date") @db.Timestamptz()
-  currentVersionReleaseDate DateTime? @map("current_version_release_date") @db.Timestamptz()
-  artworkUrl                String?   @map("artwork_url")
-  data                      Json
-  createdAt                 DateTime  @default(now()) @map("created_at") @db.Timestamptz()
-  updatedAt                 DateTime  @default(now()) @map("updated_at") @db.Timestamptz()
+  appId       String   @id @map("app_id")
+  title       String
+  description String?
+  url         String?
+  iconUrl     String?  @map("icon_url")
+  scrapedAt   DateTime @default(now()) @map("scraped_at") @db.Timestamptz()
+  data        Json
 
   link AppsAppleLink?
 
@@ -32,33 +22,13 @@ model Apple {
 }
 
 model Google {
-  appId          String    @id @map("app_id")
-  title          String
-  description    String?
-  summary        String?
-  developer      String?
-  developerId    String?   @map("developer_id")
-  genre          String?
-  genreId        String?   @map("genre_id")
-  score          Float?    @db.Real
-  ratings        Int?
-  reviews        Int?
-  installs       String?
-  minInstalls    BigInt?   @map("min_installs")
-  price          Decimal?  @db.Decimal
-  currency       String?
-  priceText      String?   @map("price_text")
-  free           Boolean?
-  version        String?
-  androidVersion String?   @map("android_version")
-  contentRating  String?   @map("content_rating")
-  adSupported    Boolean?  @map("ad_supported")
-  iconUrl        String?   @map("icon_url")
-  storeUrl       String?   @map("store_url")
-  storeUpdatedAt DateTime? @map("store_updated_at") @db.Timestamptz()
-  data           Json
-  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz()
-  updatedAt      DateTime  @default(now()) @map("updated_at") @db.Timestamptz()
+  appId       String   @id @map("app_id")
+  title       String
+  description String?
+  url         String?
+  iconUrl     String?  @map("icon_url")
+  scrapedAt   DateTime @default(now()) @map("scraped_at") @db.Timestamptz()
+  data        Json
 
   link AppsGoogleLink?
 
@@ -96,4 +66,5 @@ model AppsGoogleLink {
   app    App    @relation(fields: [appId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@index([appId])
-  @@map("apps_google_links") }
+  @@map("apps_google_links")
+}

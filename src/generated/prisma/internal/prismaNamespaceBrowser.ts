@@ -76,22 +76,12 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const AppleScalarFieldEnum = {
   appId: 'appId',
-  trackName: 'trackName',
+  title: 'title',
   description: 'description',
-  artistName: 'artistName',
-  primaryGenreName: 'primaryGenreName',
-  version: 'version',
-  price: 'price',
-  currency: 'currency',
-  formattedPrice: 'formattedPrice',
-  averageUserRating: 'averageUserRating',
-  userRatingCount: 'userRatingCount',
-  releaseDate: 'releaseDate',
-  currentVersionReleaseDate: 'currentVersionReleaseDate',
-  artworkUrl: 'artworkUrl',
-  data: 'data',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  url: 'url',
+  iconUrl: 'iconUrl',
+  scrapedAt: 'scrapedAt',
+  data: 'data'
 } as const
 
 export type AppleScalarFieldEnum = (typeof AppleScalarFieldEnum)[keyof typeof AppleScalarFieldEnum]
@@ -101,30 +91,10 @@ export const GoogleScalarFieldEnum = {
   appId: 'appId',
   title: 'title',
   description: 'description',
-  summary: 'summary',
-  developer: 'developer',
-  developerId: 'developerId',
-  genre: 'genre',
-  genreId: 'genreId',
-  score: 'score',
-  ratings: 'ratings',
-  reviews: 'reviews',
-  installs: 'installs',
-  minInstalls: 'minInstalls',
-  price: 'price',
-  currency: 'currency',
-  priceText: 'priceText',
-  free: 'free',
-  version: 'version',
-  androidVersion: 'androidVersion',
-  contentRating: 'contentRating',
-  adSupported: 'adSupported',
+  url: 'url',
   iconUrl: 'iconUrl',
-  storeUrl: 'storeUrl',
-  storeUpdatedAt: 'storeUpdatedAt',
-  data: 'data',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  scrapedAt: 'scrapedAt',
+  data: 'data'
 } as const
 
 export type GoogleScalarFieldEnum = (typeof GoogleScalarFieldEnum)[keyof typeof GoogleScalarFieldEnum]
