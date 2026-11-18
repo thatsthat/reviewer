@@ -18,23 +18,22 @@ export const MergedGroup: Story = {
         store: 'apple',
         storeAppId: '389801252',
         name: 'Instagram',
-        rating: 4.7,
-        ratingCount: 29486620,
         url: 'https://apps.apple.com/app/id389801252',
       },
       {
         store: 'google',
         storeAppId: 'com.instagram.android',
         name: 'Instagram',
-        rating: 4.0,
-        ratingCount: 169241933,
         url: 'https://play.google.com/store/apps/details?id=com.instagram.android',
       },
     ],
   },
   play: async ({ canvas }) => {
-    await expect(canvas.getByText('App Store · 4.7★ (29,486,620)')).toBeVisible()
-    await expect(canvas.getByText('Google Play · 4.0★ (169,241,933)')).toBeVisible()
+    await expect(canvas.getByRole('img', { name: 'App Store' })).toBeVisible()
+    await expect(canvas.getByRole('img', { name: 'Google Play' })).toBeVisible()
+    await expect(canvas.getAllByText('Instagram')).toHaveLength(2)
+    // Ratings are left to the store pages.
+    await expect(canvas.queryByText(/★/)).not.toBeInTheDocument()
     // Unmerge only makes sense when there's more than one linked listing.
     await expect(canvas.getAllByRole('button', { name: /unmerge/i })).toHaveLength(2)
   },
@@ -47,16 +46,12 @@ export const UnmergeListing: Story = {
         store: 'apple',
         storeAppId: '389801252',
         name: 'Instagram',
-        rating: 4.7,
-        ratingCount: 29486620,
         url: 'https://apps.apple.com/app/id389801252',
       },
       {
         store: 'google',
         storeAppId: 'com.instagram.android',
         name: 'Instagram',
-        rating: 4.0,
-        ratingCount: 169241933,
         url: 'https://play.google.com/store/apps/details?id=com.instagram.android',
       },
     ],
@@ -81,13 +76,14 @@ export const SingleListing: Story = {
         store: 'google',
         storeAppId: 'com.whatsapp',
         name: 'WhatsApp Messenger',
-        rating: 4.6,
-        ratingCount: 10000000,
         url: 'https://play.google.com/store/apps/details?id=com.whatsapp',
       },
     ],
   },
   play: async ({ canvas }) => {
+    await expect(canvas.getByRole('img', { name: 'Google Play' })).toBeVisible()
+    await expect(canvas.getByText('WhatsApp Messenger')).toBeVisible()
+    await expect(canvas.queryByText(/★/)).not.toBeInTheDocument()
     await expect(canvas.queryByRole('button', { name: /unmerge/i })).not.toBeInTheDocument()
   },
 }

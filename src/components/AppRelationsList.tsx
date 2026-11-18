@@ -12,6 +12,11 @@ const STORE_LABEL: Record<AppRelation['store'], string> = {
   google: 'Google Play',
 }
 
+const STORE_LOGO: Record<AppRelation['store'], string> = {
+  apple: '/apple.svg',
+  google: '/google.svg',
+}
+
 export function AppRelationsList({ relations }: { relations: Array<AppRelation> }) {
   if (relations.length === 0) {
     return <p className="text-sm text-muted-foreground">No linked store listings.</p>
@@ -73,16 +78,14 @@ function AppRelationRow({
         target="_blank"
         rel="noreferrer"
         onClick={handleLinkClick}
-        className="min-w-0 flex-1"
+        className="flex min-w-0 flex-1 items-center gap-2"
       >
-        <div className="flex min-w-0 flex-col">
-          <span className="truncate font-medium">{relation.name}</span>
-          <span className="text-xs text-muted-foreground">
-            {STORE_LABEL[relation.store]}
-            {relation.rating != null && ` · ${relation.rating.toFixed(1)}★`}
-            {relation.ratingCount != null && ` (${relation.ratingCount.toLocaleString()})`}
-          </span>
-        </div>
+        <img
+          src={STORE_LOGO[relation.store]}
+          alt={STORE_LABEL[relation.store]}
+          className="size-5 shrink-0"
+        />
+        <span className="truncate font-medium">{relation.name}</span>
       </a>
       {canUnmerge && (
         <Button

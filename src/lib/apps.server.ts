@@ -14,21 +14,17 @@ export interface AppRelation {
   store: 'apple' | 'google'
   storeAppId: string
   name: string
-  rating: number | null
-  ratingCount: number | null
   url: string
 }
 
-function getStoredUrl(data: Prisma.JsonValue): string {
-  return (data as { url: string }).url
-}
+const STORE_ORDER: Record<AppRelation['store'], number> = { google: 0, apple: 1 }
 
-function getStoredRating(data: Prisma.JsonValue): number | null {
-  return (data as { score?: number }).score ?? null
-}
-
-function getStoredRatingCount(data: Prisma.JsonValue): number | null {
-  return (data as { reviews?: number }).reviews ?? null
+export function compareAppRelations(a: AppRelation, b: AppRelation): number {
+  return (
+    STORE_ORDER[a.store] - STORE_ORDER[b.store] ||
+    a.name.localeCompare(b.name) ||
+    (a.storeAppId < b.storeAppId ? -1 : a.storeAppId > b.storeAppId ? 1 : 0)
+  )
 }
 
 export async function loadAppDetail(appId: number) {
@@ -45,14 +41,14 @@ export async function loadAppDetail(appId: number) {
       where: { appId },
       select: {
         appleAppId: true,
-        apple: { select: { title: true, data: true } },
+        apple: { select: { title: true, url: true } },
       },
     }),
     prisma.appsGoogleLink.findMany({
       where: { appId },
       select: {
         googleAppId: true,
-        google: { select: { title: true, data: true } },
+        google: { select: { title: true, url: true } },
       },
     }),
   ])
@@ -62,19 +58,15 @@ export async function loadAppDetail(appId: number) {
       store: 'apple' as const,
       storeAppId: link.appleAppId,
       name: link.apple.title,
-      rating: getStoredRating(link.apple.data),
-      ratingCount: getStoredRatingCount(link.apple.data),
-      url: getStoredUrl(link.apple.data),
+      url: link.apple.url,
     })),
     ...googleLinks.map((link) => ({
       store: 'google' as const,
       storeAppId: link.googleAppId,
       name: link.google.title,
-      rating: getStoredRating(link.google.data),
-      ratingCount: getStoredRatingCount(link.google.data),
-      url: getStoredUrl(link.google.data),
+      url: link.google.url,
     })),
-  ]
+  ].sort(compareAppRelations)
 
   return { app, relations }
 }

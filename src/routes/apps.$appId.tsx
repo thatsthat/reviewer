@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { AppRelationsList } from '#/components/AppRelationsList'
+import { AppDetailView } from '#/components/AppDetailView'
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/ui/card'
 import { getAppDetail } from '#/lib/apps.functions'
 
 export const Route = createFileRoute('/apps/$appId')({
-  component: AppDetail,
+  component: AppDetailPage,
   loader: ({ params }) => {
     const appId = Number(params.appId)
     if (!Number.isInteger(appId)) {
@@ -28,19 +28,6 @@ export const Route = createFileRoute('/apps/$appId')({
   ),
 })
 
-function AppDetail() {
-  const { app, relations } = Route.useLoaderData()
-
-  return (
-    <main className="page-wrap px-4 py-12">
-      <Card className="mx-auto max-w-xl">
-        <CardHeader>
-          <CardTitle>{app.title}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <AppRelationsList relations={relations} />
-        </CardContent>
-      </Card>
-    </main>
-  )
+function AppDetailPage() {
+  return <AppDetailView {...Route.useLoaderData()} />
 }

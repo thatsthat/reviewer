@@ -11,7 +11,7 @@ model Apple {
   appId       String   @id @map("app_id")
   title       String
   description String?
-  url         String?
+  url         String
   iconUrl     String?  @map("icon_url")
   scrapedAt   DateTime @default(now()) @map("scraped_at") @db.Timestamptz()
   data        Json
@@ -25,7 +25,7 @@ model Google {
   appId       String   @id @map("app_id")
   title       String
   description String?
-  url         String?
+  url         String
   iconUrl     String?  @map("icon_url")
   scrapedAt   DateTime @default(now()) @map("scraped_at") @db.Timestamptz()
   data        Json
