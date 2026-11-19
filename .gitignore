@@ -13,5 +13,3 @@ __unconfig*
 todos.json
 .vscode
 
-*storybook.log
-storybook-static

@@ -15,9 +15,7 @@
     "db:push": "dotenv -e .env.local -- prisma db push",
     "db:pull": "dotenv -e .env.local -- prisma db pull",
     "db:migrate": "dotenv -e .env.local -- prisma migrate dev",
-    "db:studio": "dotenv -e .env.local -- prisma studio",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "db:studio": "dotenv -e .env.local -- prisma studio"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
@@ -43,12 +41,6 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "latest",
-    "@storybook/addon-a11y": "^10.6.0",
-    "@storybook/addon-docs": "^10.6.0",
-    "@storybook/addon-mcp": "^10.6.0",
-    "@storybook/addon-vitest": "^10.6.0",
-    "@storybook/tanstack-react": "^10.6.0",
     "@tailwindcss/typography": "^0.5.16",
     "@tanstack/devtools-vite": "latest",
     "@tanstack/react-query": "latest",
@@ -57,11 +49,8 @@
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^6.0.1",
-    "@vitest/browser-playwright": "latest",
     "@vitest/coverage-v8": "latest",
     "dotenv-cli": "^11.0.0",
-    "playwright": "latest",
-    "storybook": "^10.6.0",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2",
     "vite": "^8.0.0",
