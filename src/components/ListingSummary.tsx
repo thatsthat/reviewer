@@ -52,7 +52,12 @@ export function ListingSummary({ listing }: { listing: ListingSummaryData }) {
   return (
     <section className="flex gap-3" aria-label="Main listing">
       {listing.iconUrl && (
-        <img src={listing.iconUrl} alt="" className="size-16 shrink-0 rounded-xl" />
+        <img
+          src={listing.iconUrl}
+          alt=""
+          referrerPolicy="no-referrer"
+          className="size-16 shrink-0 rounded-xl"
+        />
       )}
       <div className="min-w-0 flex-1">
         <h2 className="font-semibold">{listing.title}</h2>
