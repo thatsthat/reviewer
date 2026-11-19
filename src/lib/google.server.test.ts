@@ -55,6 +55,17 @@ describe('toGoogleRow', () => {
     expect(row.scrapedAt.getTime()).toBeLessThanOrEqual(after)
   })
 
+  it('maps the store update timestamp (ms) to updatedAt', () => {
+    expect(toGoogleRow(buildDetails({ updated: 1700000000000 })).updatedAt).toEqual(
+      new Date(1700000000000),
+    )
+  })
+
+  it('maps a missing or invalid update value to null', () => {
+    expect(toGoogleRow(buildDetails({ updated: undefined as unknown as number })).updatedAt).toBeNull()
+    expect(toGoogleRow(buildDetails({ updated: NaN })).updatedAt).toBeNull()
+  })
+
   it('rejects scraper payloads that are not JSON-serializable instead of storing them blindly', () => {
     const circular: Record<string, unknown> = { note: 'corrupted payload' }
     circular.self = circular

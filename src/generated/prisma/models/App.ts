@@ -37,6 +37,8 @@ export type AppSumAggregateOutputType = {
 export type AppMinAggregateOutputType = {
   id: number | null
   title: string | null
+  primaryStore: $Enums.Store | null
+  primaryStoreAppId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -44,6 +46,8 @@ export type AppMinAggregateOutputType = {
 export type AppMaxAggregateOutputType = {
   id: number | null
   title: string | null
+  primaryStore: $Enums.Store | null
+  primaryStoreAppId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -51,6 +55,8 @@ export type AppMaxAggregateOutputType = {
 export type AppCountAggregateOutputType = {
   id: number
   title: number
+  primaryStore: number
+  primaryStoreAppId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -68,6 +74,8 @@ export type AppSumAggregateInputType = {
 export type AppMinAggregateInputType = {
   id?: true
   title?: true
+  primaryStore?: true
+  primaryStoreAppId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -75,6 +83,8 @@ export type AppMinAggregateInputType = {
 export type AppMaxAggregateInputType = {
   id?: true
   title?: true
+  primaryStore?: true
+  primaryStoreAppId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -82,6 +92,8 @@ export type AppMaxAggregateInputType = {
 export type AppCountAggregateInputType = {
   id?: true
   title?: true
+  primaryStore?: true
+  primaryStoreAppId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -176,6 +188,8 @@ export type AppGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type AppGroupByOutputType = {
   id: number
   title: string
+  primaryStore: $Enums.Store
+  primaryStoreAppId: string
   createdAt: Date
   updatedAt: Date
   _count: AppCountAggregateOutputType | null
@@ -206,6 +220,8 @@ export type AppWhereInput = {
   NOT?: Prisma.AppWhereInput | Prisma.AppWhereInput[]
   id?: Prisma.IntFilter<"App"> | number
   title?: Prisma.StringFilter<"App"> | string
+  primaryStore?: Prisma.EnumStoreFilter<"App"> | $Enums.Store
+  primaryStoreAppId?: Prisma.StringFilter<"App"> | string
   createdAt?: Prisma.DateTimeFilter<"App"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"App"> | Date | string
   appleLinks?: Prisma.AppsAppleLinkListRelationFilter
@@ -215,6 +231,8 @@ export type AppWhereInput = {
 export type AppOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  primaryStore?: Prisma.SortOrder
+  primaryStoreAppId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   appleLinks?: Prisma.AppsAppleLinkOrderByRelationAggregateInput
@@ -227,6 +245,8 @@ export type AppWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.AppWhereInput[]
   NOT?: Prisma.AppWhereInput | Prisma.AppWhereInput[]
   title?: Prisma.StringFilter<"App"> | string
+  primaryStore?: Prisma.EnumStoreFilter<"App"> | $Enums.Store
+  primaryStoreAppId?: Prisma.StringFilter<"App"> | string
   createdAt?: Prisma.DateTimeFilter<"App"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"App"> | Date | string
   appleLinks?: Prisma.AppsAppleLinkListRelationFilter
@@ -236,6 +256,8 @@ export type AppWhereUniqueInput = Prisma.AtLeast<{
 export type AppOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  primaryStore?: Prisma.SortOrder
+  primaryStoreAppId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.AppCountOrderByAggregateInput
@@ -251,12 +273,16 @@ export type AppScalarWhereWithAggregatesInput = {
   NOT?: Prisma.AppScalarWhereWithAggregatesInput | Prisma.AppScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"App"> | number
   title?: Prisma.StringWithAggregatesFilter<"App"> | string
+  primaryStore?: Prisma.EnumStoreWithAggregatesFilter<"App"> | $Enums.Store
+  primaryStoreAppId?: Prisma.StringWithAggregatesFilter<"App"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"App"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"App"> | Date | string
 }
 
 export type AppCreateInput = {
   title: string
+  primaryStore: $Enums.Store
+  primaryStoreAppId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   appleLinks?: Prisma.AppsAppleLinkCreateNestedManyWithoutAppInput
@@ -266,6 +292,8 @@ export type AppCreateInput = {
 export type AppUncheckedCreateInput = {
   id?: number
   title: string
+  primaryStore: $Enums.Store
+  primaryStoreAppId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   appleLinks?: Prisma.AppsAppleLinkUncheckedCreateNestedManyWithoutAppInput
@@ -274,6 +302,8 @@ export type AppUncheckedCreateInput = {
 
 export type AppUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryStore?: Prisma.EnumStoreFieldUpdateOperationsInput | $Enums.Store
+  primaryStoreAppId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appleLinks?: Prisma.AppsAppleLinkUpdateManyWithoutAppNestedInput
@@ -283,6 +313,8 @@ export type AppUpdateInput = {
 export type AppUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryStore?: Prisma.EnumStoreFieldUpdateOperationsInput | $Enums.Store
+  primaryStoreAppId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appleLinks?: Prisma.AppsAppleLinkUncheckedUpdateManyWithoutAppNestedInput
@@ -292,12 +324,16 @@ export type AppUncheckedUpdateInput = {
 export type AppCreateManyInput = {
   id?: number
   title: string
+  primaryStore: $Enums.Store
+  primaryStoreAppId: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type AppUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryStore?: Prisma.EnumStoreFieldUpdateOperationsInput | $Enums.Store
+  primaryStoreAppId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -305,6 +341,8 @@ export type AppUpdateManyMutationInput = {
 export type AppUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryStore?: Prisma.EnumStoreFieldUpdateOperationsInput | $Enums.Store
+  primaryStoreAppId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -312,6 +350,8 @@ export type AppUncheckedUpdateManyInput = {
 export type AppCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  primaryStore?: Prisma.SortOrder
+  primaryStoreAppId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -323,6 +363,8 @@ export type AppAvgOrderByAggregateInput = {
 export type AppMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  primaryStore?: Prisma.SortOrder
+  primaryStoreAppId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -330,6 +372,8 @@ export type AppMaxOrderByAggregateInput = {
 export type AppMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  primaryStore?: Prisma.SortOrder
+  primaryStoreAppId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -341,6 +385,10 @@ export type AppSumOrderByAggregateInput = {
 export type AppScalarRelationFilter = {
   is?: Prisma.AppWhereInput
   isNot?: Prisma.AppWhereInput
+}
+
+export type EnumStoreFieldUpdateOperationsInput = {
+  set?: $Enums.Store
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -381,6 +429,8 @@ export type AppUpdateOneRequiredWithoutGoogleLinksNestedInput = {
 
 export type AppCreateWithoutAppleLinksInput = {
   title: string
+  primaryStore: $Enums.Store
+  primaryStoreAppId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   googleLinks?: Prisma.AppsGoogleLinkCreateNestedManyWithoutAppInput
@@ -389,6 +439,8 @@ export type AppCreateWithoutAppleLinksInput = {
 export type AppUncheckedCreateWithoutAppleLinksInput = {
   id?: number
   title: string
+  primaryStore: $Enums.Store
+  primaryStoreAppId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   googleLinks?: Prisma.AppsGoogleLinkUncheckedCreateNestedManyWithoutAppInput
@@ -412,6 +464,8 @@ export type AppUpdateToOneWithWhereWithoutAppleLinksInput = {
 
 export type AppUpdateWithoutAppleLinksInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryStore?: Prisma.EnumStoreFieldUpdateOperationsInput | $Enums.Store
+  primaryStoreAppId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   googleLinks?: Prisma.AppsGoogleLinkUpdateManyWithoutAppNestedInput
@@ -420,6 +474,8 @@ export type AppUpdateWithoutAppleLinksInput = {
 export type AppUncheckedUpdateWithoutAppleLinksInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryStore?: Prisma.EnumStoreFieldUpdateOperationsInput | $Enums.Store
+  primaryStoreAppId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   googleLinks?: Prisma.AppsGoogleLinkUncheckedUpdateManyWithoutAppNestedInput
@@ -427,6 +483,8 @@ export type AppUncheckedUpdateWithoutAppleLinksInput = {
 
 export type AppCreateWithoutGoogleLinksInput = {
   title: string
+  primaryStore: $Enums.Store
+  primaryStoreAppId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   appleLinks?: Prisma.AppsAppleLinkCreateNestedManyWithoutAppInput
@@ -435,6 +493,8 @@ export type AppCreateWithoutGoogleLinksInput = {
 export type AppUncheckedCreateWithoutGoogleLinksInput = {
   id?: number
   title: string
+  primaryStore: $Enums.Store
+  primaryStoreAppId: string
   createdAt?: Date | string
   updatedAt?: Date | string
   appleLinks?: Prisma.AppsAppleLinkUncheckedCreateNestedManyWithoutAppInput
@@ -458,6 +518,8 @@ export type AppUpdateToOneWithWhereWithoutGoogleLinksInput = {
 
 export type AppUpdateWithoutGoogleLinksInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryStore?: Prisma.EnumStoreFieldUpdateOperationsInput | $Enums.Store
+  primaryStoreAppId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appleLinks?: Prisma.AppsAppleLinkUpdateManyWithoutAppNestedInput
@@ -466,6 +528,8 @@ export type AppUpdateWithoutGoogleLinksInput = {
 export type AppUncheckedUpdateWithoutGoogleLinksInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryStore?: Prisma.EnumStoreFieldUpdateOperationsInput | $Enums.Store
+  primaryStoreAppId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appleLinks?: Prisma.AppsAppleLinkUncheckedUpdateManyWithoutAppNestedInput
@@ -514,6 +578,8 @@ export type AppCountOutputTypeCountGoogleLinksArgs<ExtArgs extends runtime.Types
 export type AppSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
+  primaryStore?: boolean
+  primaryStoreAppId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   appleLinks?: boolean | Prisma.App$appleLinksArgs<ExtArgs>
@@ -524,6 +590,8 @@ export type AppSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type AppSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
+  primaryStore?: boolean
+  primaryStoreAppId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["app"]>
@@ -531,6 +599,8 @@ export type AppSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extension
 export type AppSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
+  primaryStore?: boolean
+  primaryStoreAppId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["app"]>
@@ -538,11 +608,13 @@ export type AppSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extension
 export type AppSelectScalar = {
   id?: boolean
   title?: boolean
+  primaryStore?: boolean
+  primaryStoreAppId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type AppOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "createdAt" | "updatedAt", ExtArgs["result"]["app"]>
+export type AppOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "primaryStore" | "primaryStoreAppId" | "createdAt" | "updatedAt", ExtArgs["result"]["app"]>
 export type AppInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   appleLinks?: boolean | Prisma.App$appleLinksArgs<ExtArgs>
   googleLinks?: boolean | Prisma.App$googleLinksArgs<ExtArgs>
@@ -560,6 +632,8 @@ export type $AppPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     title: string
+    primaryStore: $Enums.Store
+    primaryStoreAppId: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["app"]>
@@ -989,6 +1063,8 @@ export interface Prisma__AppClient<T, Null = never, ExtArgs extends runtime.Type
 export interface AppFieldRefs {
   readonly id: Prisma.FieldRef<"App", 'Int'>
   readonly title: Prisma.FieldRef<"App", 'String'>
+  readonly primaryStore: Prisma.FieldRef<"App", 'Store'>
+  readonly primaryStoreAppId: Prisma.FieldRef<"App", 'String'>
   readonly createdAt: Prisma.FieldRef<"App", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"App", 'DateTime'>
 }

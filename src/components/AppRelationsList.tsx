@@ -1,25 +1,34 @@
-import { useState } from 'react'
-import { useRouter } from '@tanstack/react-router'
-import { useServerFn } from '@tanstack/react-start'
-import { Button } from '#/components/ui/button'
-import { useLongPress } from '#/hooks/useLongPress'
-import { cn } from '#/lib/utils'
-import type { AppRelation } from '#/lib/apps.server'
-import { unmergeApp } from '#/lib/apps.functions'
+import { useState } from "react";
+import { useRouter } from "@tanstack/react-router";
+import { Star } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { Button } from "#/components/ui/button";
+import { useLongPress } from "#/hooks/useLongPress";
+import { cn } from "#/lib/utils";
+import type { AppRelation } from "#/lib/apps.server";
+import { setPrimaryListing, unmergeApp } from "#/lib/apps.functions";
 
-const STORE_LABEL: Record<AppRelation['store'], string> = {
-  apple: 'App Store',
-  google: 'Google Play',
-}
+const STORE_LABEL: Record<AppRelation["store"], string> = {
+  apple: "App Store",
+  google: "Google Play",
+};
 
-const STORE_LOGO: Record<AppRelation['store'], string> = {
-  apple: '/apple.svg',
-  google: '/google.svg',
-}
+const STORE_LOGO: Record<AppRelation["store"], string> = {
+  apple: "/apple.svg",
+  google: "/google.svg",
+};
 
-export function AppRelationsList({ relations }: { relations: Array<AppRelation> }) {
+export function AppRelationsList({
+  appId,
+  relations,
+}: {
+  appId: number;
+  relations: Array<AppRelation>;
+}) {
   if (relations.length === 0) {
-    return <p className="text-sm text-muted-foreground">No linked store listings.</p>
+    return (
+      <p className="text-sm text-muted-foreground">No linked store listings.</p>
+    );
   }
 
   return (
@@ -27,41 +36,55 @@ export function AppRelationsList({ relations }: { relations: Array<AppRelation> 
       {relations.map((relation) => (
         <AppRelationRow
           key={`${relation.store}-${relation.storeAppId}`}
+          appId={appId}
           relation={relation}
-          canUnmerge={relations.length > 1}
+          canUnmerge={relations.length > 1 && !relation.isPrimary}
         />
       ))}
     </ul>
-  )
+  );
 }
 
 function AppRelationRow({
+  appId,
   relation,
   canUnmerge,
 }: {
-  relation: AppRelation
-  canUnmerge: boolean
+  appId: number;
+  relation: AppRelation;
+  canUnmerge: boolean;
 }) {
-  const router = useRouter()
-  const callUnmergeApp = useServerFn(unmergeApp)
-  const [isRevealed, setIsRevealed] = useState(false)
-  const [isUnmerging, setIsUnmerging] = useState(false)
-  const longPress = useLongPress(() => setIsRevealed(true))
+  const router = useRouter();
+  const callUnmergeApp = useServerFn(unmergeApp);
+  const callSetPrimary = useServerFn(setPrimaryListing);
+  const [isRevealed, setIsRevealed] = useState(false);
+  const [isUnmerging, setIsUnmerging] = useState(false);
+  const longPress = useLongPress(() => setIsRevealed(true));
 
   async function handleUnmerge() {
-    if (longPress.consumeLongPress()) return
-    setIsUnmerging(true)
+    if (longPress.consumeLongPress()) return;
+    setIsUnmerging(true);
     try {
-      await callUnmergeApp({ data: { store: relation.store, appId: relation.storeAppId } })
-      router.invalidate()
+      await callUnmergeApp({
+        data: { store: relation.store, appId: relation.storeAppId },
+      });
+      router.invalidate();
     } finally {
-      setIsUnmerging(false)
+      setIsUnmerging(false);
     }
+  }
+
+  async function handleMakePrimary() {
+    if (longPress.consumeLongPress() || relation.isPrimary) return;
+    await callSetPrimary({
+      data: { appId, store: relation.store, storeAppId: relation.storeAppId },
+    });
+    router.invalidate();
   }
 
   function handleLinkClick(event: React.MouseEvent) {
     if (longPress.consumeLongPress()) {
-      event.preventDefault()
+      event.preventDefault();
     }
   }
 
@@ -87,6 +110,7 @@ function AppRelationRow({
         />
         <span className="truncate font-medium">{relation.name}</span>
       </a>
+
       {canUnmerge && (
         <Button
           variant="ghost"
@@ -94,15 +118,25 @@ function AppRelationRow({
           disabled={isUnmerging}
           onClick={handleUnmerge}
           className={cn(
-            'shrink-0 transition-opacity',
+            "shrink-0 transition-opacity",
             isRevealed
-              ? 'inline-flex opacity-100'
-              : 'hidden opacity-0 md:inline-flex md:group-hover:opacity-100',
+              ? "inline-flex opacity-100"
+              : "hidden opacity-0 md:inline-flex md:group-hover:opacity-100",
           )}
         >
-          {isUnmerging ? 'Unmerging...' : 'Unmerge'}
+          {isUnmerging ? "Unmerging..." : "Unmerge"}
         </Button>
       )}
+      <Button
+        variant="ghost"
+        size="icon-sm"
+        aria-pressed={relation.isPrimary}
+        aria-label={relation.isPrimary ? "Main listing" : "Make main listing"}
+        onClick={handleMakePrimary}
+        className="shrink-0"
+      >
+        <Star fill={relation.isPrimary ? "currentColor" : "none"} />
+      </Button>
     </li>
-  )
+  );
 }

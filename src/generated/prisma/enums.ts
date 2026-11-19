@@ -9,7 +9,9 @@
 * 🟢 You can import this file directly.
 */
 
+export const Store = {
+  google: 'google',
+  apple: 'apple'
+} as const
 
-
-// This file is empty because there are no enums in the schema.
-export {}
+export type Store = (typeof Store)[keyof typeof Store]

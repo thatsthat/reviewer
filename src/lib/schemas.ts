@@ -21,3 +21,9 @@ export const unmergeAppSchema = z.object({
 export const appIdSchema = z.object({
   appId: z.number().int().positive(),
 })
+
+export const setPrimaryListingSchema = z.object({
+  appId: z.number().int().positive(),
+  store: z.enum(['apple', 'google']),
+  storeAppId: z.string().min(1),
+})

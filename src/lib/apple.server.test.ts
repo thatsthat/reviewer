@@ -59,6 +59,17 @@ describe('toAppleRow', () => {
     expect(row.scrapedAt.getTime()).toBeLessThanOrEqual(after)
   })
 
+  it('maps the store update ISO string to updatedAt', () => {
+    expect(toAppleRow(buildDetails({ updated: '2024-01-01T00:00:00Z' })).updatedAt).toEqual(
+      new Date('2024-01-01T00:00:00Z'),
+    )
+  })
+
+  it('maps a missing or invalid update value to null', () => {
+    expect(toAppleRow(buildDetails({ updated: '' })).updatedAt).toBeNull()
+    expect(toAppleRow(buildDetails({ updated: 'not a date' })).updatedAt).toBeNull()
+  })
+
   it('rejects scraper payloads that are not JSON-serializable instead of storing them blindly', () => {
     const circular: Record<string, unknown> = { note: 'corrupted payload' }
     circular.self = circular

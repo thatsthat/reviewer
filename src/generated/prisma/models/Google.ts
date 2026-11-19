@@ -31,6 +31,7 @@ export type GoogleMinAggregateOutputType = {
   url: string | null
   iconUrl: string | null
   scrapedAt: Date | null
+  updatedAt: Date | null
 }
 
 export type GoogleMaxAggregateOutputType = {
@@ -40,6 +41,7 @@ export type GoogleMaxAggregateOutputType = {
   url: string | null
   iconUrl: string | null
   scrapedAt: Date | null
+  updatedAt: Date | null
 }
 
 export type GoogleCountAggregateOutputType = {
@@ -49,6 +51,7 @@ export type GoogleCountAggregateOutputType = {
   url: number
   iconUrl: number
   scrapedAt: number
+  updatedAt: number
   data: number
   _all: number
 }
@@ -61,6 +64,7 @@ export type GoogleMinAggregateInputType = {
   url?: true
   iconUrl?: true
   scrapedAt?: true
+  updatedAt?: true
 }
 
 export type GoogleMaxAggregateInputType = {
@@ -70,6 +74,7 @@ export type GoogleMaxAggregateInputType = {
   url?: true
   iconUrl?: true
   scrapedAt?: true
+  updatedAt?: true
 }
 
 export type GoogleCountAggregateInputType = {
@@ -79,6 +84,7 @@ export type GoogleCountAggregateInputType = {
   url?: true
   iconUrl?: true
   scrapedAt?: true
+  updatedAt?: true
   data?: true
   _all?: true
 }
@@ -162,6 +168,7 @@ export type GoogleGroupByOutputType = {
   url: string
   iconUrl: string | null
   scrapedAt: Date
+  updatedAt: Date | null
   data: runtime.JsonValue
   _count: GoogleCountAggregateOutputType | null
   _min: GoogleMinAggregateOutputType | null
@@ -193,6 +200,7 @@ export type GoogleWhereInput = {
   url?: Prisma.StringFilter<"Google"> | string
   iconUrl?: Prisma.StringNullableFilter<"Google"> | string | null
   scrapedAt?: Prisma.DateTimeFilter<"Google"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Google"> | Date | string | null
   data?: Prisma.JsonFilter<"Google">
   link?: Prisma.XOR<Prisma.AppsGoogleLinkNullableScalarRelationFilter, Prisma.AppsGoogleLinkWhereInput> | null
 }
@@ -204,6 +212,7 @@ export type GoogleOrderByWithRelationInput = {
   url?: Prisma.SortOrder
   iconUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   scrapedAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   data?: Prisma.SortOrder
   link?: Prisma.AppsGoogleLinkOrderByWithRelationInput
 }
@@ -218,6 +227,7 @@ export type GoogleWhereUniqueInput = Prisma.AtLeast<{
   url?: Prisma.StringFilter<"Google"> | string
   iconUrl?: Prisma.StringNullableFilter<"Google"> | string | null
   scrapedAt?: Prisma.DateTimeFilter<"Google"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Google"> | Date | string | null
   data?: Prisma.JsonFilter<"Google">
   link?: Prisma.XOR<Prisma.AppsGoogleLinkNullableScalarRelationFilter, Prisma.AppsGoogleLinkWhereInput> | null
 }, "appId">
@@ -229,6 +239,7 @@ export type GoogleOrderByWithAggregationInput = {
   url?: Prisma.SortOrder
   iconUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   scrapedAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   data?: Prisma.SortOrder
   _count?: Prisma.GoogleCountOrderByAggregateInput
   _max?: Prisma.GoogleMaxOrderByAggregateInput
@@ -245,6 +256,7 @@ export type GoogleScalarWhereWithAggregatesInput = {
   url?: Prisma.StringWithAggregatesFilter<"Google"> | string
   iconUrl?: Prisma.StringNullableWithAggregatesFilter<"Google"> | string | null
   scrapedAt?: Prisma.DateTimeWithAggregatesFilter<"Google"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Google"> | Date | string | null
   data?: Prisma.JsonWithAggregatesFilter<"Google">
 }
 
@@ -255,6 +267,7 @@ export type GoogleCreateInput = {
   url: string
   iconUrl?: string | null
   scrapedAt?: Date | string
+  updatedAt?: Date | string | null
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
   link?: Prisma.AppsGoogleLinkCreateNestedOneWithoutGoogleInput
 }
@@ -266,6 +279,7 @@ export type GoogleUncheckedCreateInput = {
   url: string
   iconUrl?: string | null
   scrapedAt?: Date | string
+  updatedAt?: Date | string | null
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
   link?: Prisma.AppsGoogleLinkUncheckedCreateNestedOneWithoutGoogleInput
 }
@@ -277,6 +291,7 @@ export type GoogleUpdateInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   link?: Prisma.AppsGoogleLinkUpdateOneWithoutGoogleNestedInput
 }
@@ -288,6 +303,7 @@ export type GoogleUncheckedUpdateInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   link?: Prisma.AppsGoogleLinkUncheckedUpdateOneWithoutGoogleNestedInput
 }
@@ -299,6 +315,7 @@ export type GoogleCreateManyInput = {
   url: string
   iconUrl?: string | null
   scrapedAt?: Date | string
+  updatedAt?: Date | string | null
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -309,6 +326,7 @@ export type GoogleUpdateManyMutationInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -319,6 +337,7 @@ export type GoogleUncheckedUpdateManyInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -329,6 +348,7 @@ export type GoogleCountOrderByAggregateInput = {
   url?: Prisma.SortOrder
   iconUrl?: Prisma.SortOrder
   scrapedAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   data?: Prisma.SortOrder
 }
 
@@ -339,6 +359,7 @@ export type GoogleMaxOrderByAggregateInput = {
   url?: Prisma.SortOrder
   iconUrl?: Prisma.SortOrder
   scrapedAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type GoogleMinOrderByAggregateInput = {
@@ -348,6 +369,7 @@ export type GoogleMinOrderByAggregateInput = {
   url?: Prisma.SortOrder
   iconUrl?: Prisma.SortOrder
   scrapedAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type GoogleScalarRelationFilter = {
@@ -376,6 +398,7 @@ export type GoogleCreateWithoutLinkInput = {
   url: string
   iconUrl?: string | null
   scrapedAt?: Date | string
+  updatedAt?: Date | string | null
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -386,6 +409,7 @@ export type GoogleUncheckedCreateWithoutLinkInput = {
   url: string
   iconUrl?: string | null
   scrapedAt?: Date | string
+  updatedAt?: Date | string | null
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -412,6 +436,7 @@ export type GoogleUpdateWithoutLinkInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -422,6 +447,7 @@ export type GoogleUncheckedUpdateWithoutLinkInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -434,6 +460,7 @@ export type GoogleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   url?: boolean
   iconUrl?: boolean
   scrapedAt?: boolean
+  updatedAt?: boolean
   data?: boolean
   link?: boolean | Prisma.Google$linkArgs<ExtArgs>
 }, ExtArgs["result"]["google"]>
@@ -445,6 +472,7 @@ export type GoogleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   url?: boolean
   iconUrl?: boolean
   scrapedAt?: boolean
+  updatedAt?: boolean
   data?: boolean
 }, ExtArgs["result"]["google"]>
 
@@ -455,6 +483,7 @@ export type GoogleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   url?: boolean
   iconUrl?: boolean
   scrapedAt?: boolean
+  updatedAt?: boolean
   data?: boolean
 }, ExtArgs["result"]["google"]>
 
@@ -465,10 +494,11 @@ export type GoogleSelectScalar = {
   url?: boolean
   iconUrl?: boolean
   scrapedAt?: boolean
+  updatedAt?: boolean
   data?: boolean
 }
 
-export type GoogleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"appId" | "title" | "description" | "url" | "iconUrl" | "scrapedAt" | "data", ExtArgs["result"]["google"]>
+export type GoogleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"appId" | "title" | "description" | "url" | "iconUrl" | "scrapedAt" | "updatedAt" | "data", ExtArgs["result"]["google"]>
 export type GoogleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   link?: boolean | Prisma.Google$linkArgs<ExtArgs>
 }
@@ -487,6 +517,7 @@ export type $GooglePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     url: string
     iconUrl: string | null
     scrapedAt: Date
+    updatedAt: Date | null
     data: runtime.JsonValue
   }, ExtArgs["result"]["google"]>
   composites: {}
@@ -918,6 +949,7 @@ export interface GoogleFieldRefs {
   readonly url: Prisma.FieldRef<"Google", 'String'>
   readonly iconUrl: Prisma.FieldRef<"Google", 'String'>
   readonly scrapedAt: Prisma.FieldRef<"Google", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Google", 'DateTime'>
   readonly data: Prisma.FieldRef<"Google", 'Json'>
 }
     

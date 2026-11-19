@@ -4,6 +4,7 @@ import {
   type App as GooglePlayApp,
 } from '@mradex77/google-play-scraper'
 import { prisma } from '#/db'
+import { toStoreUpdatedAt } from '#/lib/store-date'
 import type { Prisma } from '#/generated/prisma/client'
 import { detectAppStorePlatform } from '#/lib/app-store'
 import { ensureGoogleAppLink } from '#/lib/apps.server'
@@ -29,6 +30,7 @@ export function toGoogleRow(details: GooglePlayApp) {
     url: details.url,
     iconUrl: details.icon,
     scrapedAt: new Date(),
+    updatedAt: toStoreUpdatedAt(details.updated),
     data: JSON.parse(JSON.stringify(details)) as Prisma.InputJsonValue,
   }
 }

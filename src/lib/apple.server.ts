@@ -1,5 +1,6 @@
 import { app as fetchAppleApp, type App as AppleApp } from '@perttu/app-store-scraper'
 import { prisma } from '#/db'
+import { toStoreUpdatedAt } from '#/lib/store-date'
 import type { Prisma } from '#/generated/prisma/client'
 import { detectAppStorePlatform } from '#/lib/app-store'
 import { ensureAppleAppLink } from '#/lib/apps.server'
@@ -27,6 +28,7 @@ export function toAppleRow(details: AppleApp) {
     url: details.url,
     iconUrl: details.icon,
     scrapedAt: new Date(),
+    updatedAt: toStoreUpdatedAt(details.updated),
     data: JSON.parse(JSON.stringify(details)) as Prisma.InputJsonValue,
   }
 }

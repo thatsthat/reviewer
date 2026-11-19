@@ -15,6 +15,16 @@ export interface AppRelation {
   storeAppId: string
   name: string
   url: string
+  isPrimary: boolean
+}
+
+export interface ListingSummary {
+  store: 'apple' | 'google'
+  storeAppId: string
+  title: string
+  iconUrl: string | null
+  description: string | null
+  updatedAt: Date | null
 }
 
 const STORE_ORDER: Record<AppRelation['store'], number> = { google: 0, apple: 1 }
@@ -22,29 +32,28 @@ const STORE_ORDER: Record<AppRelation['store'], number> = { google: 0, apple: 1 
 export function compareAppRelations(a: AppRelation, b: AppRelation): number {
   return (
     STORE_ORDER[a.store] - STORE_ORDER[b.store] ||
-    a.name.localeCompare(b.name) ||
+    a.name.localeCompare(b.name, 'en') ||
     (a.storeAppId < b.storeAppId ? -1 : a.storeAppId > b.storeAppId ? 1 : 0)
   )
 }
 
-export async function loadAppDetail(appId: number) {
-  const app = await prisma.app.findUnique({
-    where: { id: appId },
-    select: { id: true, title: true },
-  })
-  if (!app) {
-    throw new Error(`No app found with id ${appId}.`)
-  }
+/** The first relation in the page's listing order, or null for an empty list. */
+export function pickDefaultPrimary(relations: Array<AppRelation>): AppRelation | null {
+  return [...relations].sort(compareAppRelations)[0] ?? null
+}
 
+type Db = Prisma.TransactionClient | typeof prisma
+
+export async function loadRelations(db: Db, appId: number): Promise<Array<AppRelation>> {
   const [appleLinks, googleLinks] = await Promise.all([
-    prisma.appsAppleLink.findMany({
+    db.appsAppleLink.findMany({
       where: { appId },
       select: {
         appleAppId: true,
         apple: { select: { title: true, url: true } },
       },
     }),
-    prisma.appsGoogleLink.findMany({
+    db.appsGoogleLink.findMany({
       where: { appId },
       select: {
         googleAppId: true,
@@ -53,29 +62,82 @@ export async function loadAppDetail(appId: number) {
     }),
   ])
 
-  const relations: Array<AppRelation> = [
+  return [
     ...appleLinks.map((link) => ({
       store: 'apple' as const,
       storeAppId: link.appleAppId,
       name: link.apple.title,
       url: link.apple.url,
+      isPrimary: false,
     })),
     ...googleLinks.map((link) => ({
       store: 'google' as const,
       storeAppId: link.googleAppId,
       name: link.google.title,
       url: link.google.url,
+      isPrimary: false,
     })),
   ].sort(compareAppRelations)
+}
 
-  return { app, relations }
+async function loadListingSummary(
+  store: 'apple' | 'google',
+  storeAppId: string,
+): Promise<ListingSummary | null> {
+  const select = { title: true, iconUrl: true, description: true, updatedAt: true }
+  const row =
+    store === 'apple'
+      ? await prisma.apple.findUnique({ where: { appId: storeAppId }, select })
+      : await prisma.google.findUnique({ where: { appId: storeAppId }, select })
+  return row ? { store, storeAppId, ...row } : null
+}
+
+export async function loadAppDetail(appId: number) {
+  const found = await prisma.app.findUnique({
+    where: { id: appId },
+    select: { id: true, title: true, primaryStore: true, primaryStoreAppId: true },
+  })
+  if (!found) {
+    throw new Error(`No app found with id ${appId}.`)
+  }
+  const { primaryStore, primaryStoreAppId, ...app } = found
+
+  const loaded = await loadRelations(prisma, appId)
+  const saved = loaded.find(
+    (r) => r.store === primaryStore && r.storeAppId === primaryStoreAppId,
+  )
+  // Safety net: a saved pair that matches no listing falls back to the default, without writing.
+  const main = saved ?? pickDefaultPrimary(loaded)
+  const relations = loaded.map((r) => ({ ...r, isPrimary: r === main }))
+  const primary = main ? await loadListingSummary(main.store, main.storeAppId) : null
+
+  return { app, relations, primary }
+}
+
+export async function setPrimaryListing(
+  appId: number,
+  store: 'apple' | 'google',
+  storeAppId: string,
+) {
+  await prisma.$transaction(async (tx) => {
+    const relations = await loadRelations(tx, appId)
+    if (!relations.some((r) => r.store === store && r.storeAppId === storeAppId)) {
+      throw new Error('That listing is not linked to this app.')
+    }
+    await tx.app.update({
+      where: { id: appId },
+      data: { primaryStore: store, primaryStoreAppId: storeAppId, updatedAt: new Date() },
+    })
+  })
 }
 
 export async function ensureAppleAppLink(tx: Tx, appleAppId: string, title: string) {
   const existing = await tx.appsAppleLink.findUnique({ where: { appleAppId } })
   if (existing) return existing.appId
 
-  const app = await tx.app.create({ data: { title } })
+  const app = await tx.app.create({
+    data: { title, primaryStore: 'apple', primaryStoreAppId: appleAppId },
+  })
   await tx.appsAppleLink.create({ data: { appleAppId, appId: app.id } })
   return app.id
 }
@@ -84,7 +146,9 @@ export async function ensureGoogleAppLink(tx: Tx, googleAppId: string, title: st
   const existing = await tx.appsGoogleLink.findUnique({ where: { googleAppId } })
   if (existing) return existing.appId
 
-  const app = await tx.app.create({ data: { title } })
+  const app = await tx.app.create({
+    data: { title, primaryStore: 'google', primaryStoreAppId: googleAppId },
+  })
   await tx.appsGoogleLink.create({ data: { googleAppId, appId: app.id } })
   return app.id
 }
@@ -102,11 +166,30 @@ export async function mergeAppGroups(targetAppId: number, sourceAppIds: Array<nu
       data: { appId: targetAppId },
     })
     await tx.app.deleteMany({ where: { id: { in: sourceAppIds } } })
+    const merged = pickDefaultPrimary(await loadRelations(tx, targetAppId))
     await tx.app.update({
       where: { id: targetAppId },
-      data: { updatedAt: new Date() },
+      data: {
+        updatedAt: new Date(),
+        ...(merged && { primaryStore: merged.store, primaryStoreAppId: merged.storeAppId }),
+      },
     })
   })
+}
+
+async function assertNotPrimary(
+  tx: Tx,
+  appId: number,
+  store: 'apple' | 'google',
+  storeAppId: string,
+) {
+  const app = await tx.app.findUniqueOrThrow({
+    where: { id: appId },
+    select: { primaryStore: true, primaryStoreAppId: true },
+  })
+  if (app.primaryStore === store && app.primaryStoreAppId === storeAppId) {
+    throw new Error('The main listing cannot be unmerged. Choose another main listing first.')
+  }
 }
 
 export async function splitAppFromGroup(store: 'apple' | 'google', storeAppId: string) {
@@ -121,6 +204,7 @@ export async function splitAppFromGroup(store: 'apple' | 'google', storeAppId: s
       })
       title = link.apple.title
       sourceAppId = link.appId
+      await assertNotPrimary(tx, sourceAppId, store, storeAppId)
       await tx.appsAppleLink.delete({ where: { appleAppId: storeAppId } })
     } else {
       const link = await tx.appsGoogleLink.findUniqueOrThrow({
@@ -129,10 +213,13 @@ export async function splitAppFromGroup(store: 'apple' | 'google', storeAppId: s
       })
       title = link.google.title
       sourceAppId = link.appId
+      await assertNotPrimary(tx, sourceAppId, store, storeAppId)
       await tx.appsGoogleLink.delete({ where: { googleAppId: storeAppId } })
     }
 
-    const newApp = await tx.app.create({ data: { title } })
+    const newApp = await tx.app.create({
+      data: { title, primaryStore: store, primaryStoreAppId: storeAppId },
+    })
 
     if (store === 'apple') {
       await tx.appsAppleLink.create({ data: { appleAppId: storeAppId, appId: newApp.id } })

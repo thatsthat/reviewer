@@ -31,6 +31,7 @@ export type AppleMinAggregateOutputType = {
   url: string | null
   iconUrl: string | null
   scrapedAt: Date | null
+  updatedAt: Date | null
 }
 
 export type AppleMaxAggregateOutputType = {
@@ -40,6 +41,7 @@ export type AppleMaxAggregateOutputType = {
   url: string | null
   iconUrl: string | null
   scrapedAt: Date | null
+  updatedAt: Date | null
 }
 
 export type AppleCountAggregateOutputType = {
@@ -49,6 +51,7 @@ export type AppleCountAggregateOutputType = {
   url: number
   iconUrl: number
   scrapedAt: number
+  updatedAt: number
   data: number
   _all: number
 }
@@ -61,6 +64,7 @@ export type AppleMinAggregateInputType = {
   url?: true
   iconUrl?: true
   scrapedAt?: true
+  updatedAt?: true
 }
 
 export type AppleMaxAggregateInputType = {
@@ -70,6 +74,7 @@ export type AppleMaxAggregateInputType = {
   url?: true
   iconUrl?: true
   scrapedAt?: true
+  updatedAt?: true
 }
 
 export type AppleCountAggregateInputType = {
@@ -79,6 +84,7 @@ export type AppleCountAggregateInputType = {
   url?: true
   iconUrl?: true
   scrapedAt?: true
+  updatedAt?: true
   data?: true
   _all?: true
 }
@@ -162,6 +168,7 @@ export type AppleGroupByOutputType = {
   url: string
   iconUrl: string | null
   scrapedAt: Date
+  updatedAt: Date | null
   data: runtime.JsonValue
   _count: AppleCountAggregateOutputType | null
   _min: AppleMinAggregateOutputType | null
@@ -193,6 +200,7 @@ export type AppleWhereInput = {
   url?: Prisma.StringFilter<"Apple"> | string
   iconUrl?: Prisma.StringNullableFilter<"Apple"> | string | null
   scrapedAt?: Prisma.DateTimeFilter<"Apple"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Apple"> | Date | string | null
   data?: Prisma.JsonFilter<"Apple">
   link?: Prisma.XOR<Prisma.AppsAppleLinkNullableScalarRelationFilter, Prisma.AppsAppleLinkWhereInput> | null
 }
@@ -204,6 +212,7 @@ export type AppleOrderByWithRelationInput = {
   url?: Prisma.SortOrder
   iconUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   scrapedAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   data?: Prisma.SortOrder
   link?: Prisma.AppsAppleLinkOrderByWithRelationInput
 }
@@ -218,6 +227,7 @@ export type AppleWhereUniqueInput = Prisma.AtLeast<{
   url?: Prisma.StringFilter<"Apple"> | string
   iconUrl?: Prisma.StringNullableFilter<"Apple"> | string | null
   scrapedAt?: Prisma.DateTimeFilter<"Apple"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"Apple"> | Date | string | null
   data?: Prisma.JsonFilter<"Apple">
   link?: Prisma.XOR<Prisma.AppsAppleLinkNullableScalarRelationFilter, Prisma.AppsAppleLinkWhereInput> | null
 }, "appId">
@@ -229,6 +239,7 @@ export type AppleOrderByWithAggregationInput = {
   url?: Prisma.SortOrder
   iconUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   scrapedAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   data?: Prisma.SortOrder
   _count?: Prisma.AppleCountOrderByAggregateInput
   _max?: Prisma.AppleMaxOrderByAggregateInput
@@ -245,6 +256,7 @@ export type AppleScalarWhereWithAggregatesInput = {
   url?: Prisma.StringWithAggregatesFilter<"Apple"> | string
   iconUrl?: Prisma.StringNullableWithAggregatesFilter<"Apple"> | string | null
   scrapedAt?: Prisma.DateTimeWithAggregatesFilter<"Apple"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Apple"> | Date | string | null
   data?: Prisma.JsonWithAggregatesFilter<"Apple">
 }
 
@@ -255,6 +267,7 @@ export type AppleCreateInput = {
   url: string
   iconUrl?: string | null
   scrapedAt?: Date | string
+  updatedAt?: Date | string | null
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
   link?: Prisma.AppsAppleLinkCreateNestedOneWithoutAppleInput
 }
@@ -266,6 +279,7 @@ export type AppleUncheckedCreateInput = {
   url: string
   iconUrl?: string | null
   scrapedAt?: Date | string
+  updatedAt?: Date | string | null
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
   link?: Prisma.AppsAppleLinkUncheckedCreateNestedOneWithoutAppleInput
 }
@@ -277,6 +291,7 @@ export type AppleUpdateInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   link?: Prisma.AppsAppleLinkUpdateOneWithoutAppleNestedInput
 }
@@ -288,6 +303,7 @@ export type AppleUncheckedUpdateInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   link?: Prisma.AppsAppleLinkUncheckedUpdateOneWithoutAppleNestedInput
 }
@@ -299,6 +315,7 @@ export type AppleCreateManyInput = {
   url: string
   iconUrl?: string | null
   scrapedAt?: Date | string
+  updatedAt?: Date | string | null
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -309,6 +326,7 @@ export type AppleUpdateManyMutationInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -319,6 +337,7 @@ export type AppleUncheckedUpdateManyInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -329,6 +348,7 @@ export type AppleCountOrderByAggregateInput = {
   url?: Prisma.SortOrder
   iconUrl?: Prisma.SortOrder
   scrapedAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   data?: Prisma.SortOrder
 }
 
@@ -339,6 +359,7 @@ export type AppleMaxOrderByAggregateInput = {
   url?: Prisma.SortOrder
   iconUrl?: Prisma.SortOrder
   scrapedAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type AppleMinOrderByAggregateInput = {
@@ -348,6 +369,7 @@ export type AppleMinOrderByAggregateInput = {
   url?: Prisma.SortOrder
   iconUrl?: Prisma.SortOrder
   scrapedAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type AppleScalarRelationFilter = {
@@ -365,6 +387,10 @@ export type NullableStringFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
 }
 
 export type AppleCreateNestedOneWithoutLinkInput = {
@@ -388,6 +414,7 @@ export type AppleCreateWithoutLinkInput = {
   url: string
   iconUrl?: string | null
   scrapedAt?: Date | string
+  updatedAt?: Date | string | null
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -398,6 +425,7 @@ export type AppleUncheckedCreateWithoutLinkInput = {
   url: string
   iconUrl?: string | null
   scrapedAt?: Date | string
+  updatedAt?: Date | string | null
   data: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -424,6 +452,7 @@ export type AppleUpdateWithoutLinkInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -434,6 +463,7 @@ export type AppleUncheckedUpdateWithoutLinkInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scrapedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   data?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -446,6 +476,7 @@ export type AppleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   url?: boolean
   iconUrl?: boolean
   scrapedAt?: boolean
+  updatedAt?: boolean
   data?: boolean
   link?: boolean | Prisma.Apple$linkArgs<ExtArgs>
 }, ExtArgs["result"]["apple"]>
@@ -457,6 +488,7 @@ export type AppleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   url?: boolean
   iconUrl?: boolean
   scrapedAt?: boolean
+  updatedAt?: boolean
   data?: boolean
 }, ExtArgs["result"]["apple"]>
 
@@ -467,6 +499,7 @@ export type AppleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   url?: boolean
   iconUrl?: boolean
   scrapedAt?: boolean
+  updatedAt?: boolean
   data?: boolean
 }, ExtArgs["result"]["apple"]>
 
@@ -477,10 +510,11 @@ export type AppleSelectScalar = {
   url?: boolean
   iconUrl?: boolean
   scrapedAt?: boolean
+  updatedAt?: boolean
   data?: boolean
 }
 
-export type AppleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"appId" | "title" | "description" | "url" | "iconUrl" | "scrapedAt" | "data", ExtArgs["result"]["apple"]>
+export type AppleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"appId" | "title" | "description" | "url" | "iconUrl" | "scrapedAt" | "updatedAt" | "data", ExtArgs["result"]["apple"]>
 export type AppleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   link?: boolean | Prisma.Apple$linkArgs<ExtArgs>
 }
@@ -499,6 +533,7 @@ export type $ApplePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     url: string
     iconUrl: string | null
     scrapedAt: Date
+    updatedAt: Date | null
     data: runtime.JsonValue
   }, ExtArgs["result"]["apple"]>
   composites: {}
@@ -930,6 +965,7 @@ export interface AppleFieldRefs {
   readonly url: Prisma.FieldRef<"Apple", 'String'>
   readonly iconUrl: Prisma.FieldRef<"Apple", 'String'>
   readonly scrapedAt: Prisma.FieldRef<"Apple", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Apple", 'DateTime'>
   readonly data: Prisma.FieldRef<"Apple", 'Json'>
 }
     

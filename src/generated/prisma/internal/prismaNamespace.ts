@@ -837,6 +837,7 @@ export const AppleScalarFieldEnum = {
   url: 'url',
   iconUrl: 'iconUrl',
   scrapedAt: 'scrapedAt',
+  updatedAt: 'updatedAt',
   data: 'data'
 } as const
 
@@ -850,6 +851,7 @@ export const GoogleScalarFieldEnum = {
   url: 'url',
   iconUrl: 'iconUrl',
   scrapedAt: 'scrapedAt',
+  updatedAt: 'updatedAt',
   data: 'data'
 } as const
 
@@ -859,6 +861,8 @@ export type GoogleScalarFieldEnum = (typeof GoogleScalarFieldEnum)[keyof typeof 
 export const AppScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  primaryStore: 'primaryStore',
+  primaryStoreAppId: 'primaryStoreAppId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -981,6 +985,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Store'
+ */
+export type EnumStoreFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Store'>
+    
+
+
+/**
+ * Reference to a field of type 'Store[]'
+ */
+export type ListEnumStoreFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Store[]'>
     
 
 
