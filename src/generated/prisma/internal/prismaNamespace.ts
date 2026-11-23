@@ -401,7 +401,9 @@ export const ModelName = {
   Google: 'Google',
   App: 'App',
   AppsAppleLink: 'AppsAppleLink',
-  AppsGoogleLink: 'AppsGoogleLink'
+  AppsGoogleLink: 'AppsGoogleLink',
+  Label: 'Label',
+  AppLabel: 'AppLabel'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -417,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "apple" | "google" | "app" | "appsAppleLink" | "appsGoogleLink"
+    modelProps: "apple" | "google" | "app" | "appsAppleLink" | "appsGoogleLink" | "label" | "appLabel"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -791,6 +793,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Label: {
+      payload: Prisma.$LabelPayload<ExtArgs>
+      fields: Prisma.LabelFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LabelFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabelPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LabelFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabelPayload>
+        }
+        findFirst: {
+          args: Prisma.LabelFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabelPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LabelFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabelPayload>
+        }
+        findMany: {
+          args: Prisma.LabelFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabelPayload>[]
+        }
+        create: {
+          args: Prisma.LabelCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabelPayload>
+        }
+        createMany: {
+          args: Prisma.LabelCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LabelCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabelPayload>[]
+        }
+        delete: {
+          args: Prisma.LabelDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabelPayload>
+        }
+        update: {
+          args: Prisma.LabelUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabelPayload>
+        }
+        deleteMany: {
+          args: Prisma.LabelDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LabelUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LabelUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabelPayload>[]
+        }
+        upsert: {
+          args: Prisma.LabelUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabelPayload>
+        }
+        aggregate: {
+          args: Prisma.LabelAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLabel>
+        }
+        groupBy: {
+          args: Prisma.LabelGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LabelGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LabelCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LabelCountAggregateOutputType> | number
+        }
+      }
+    }
+    AppLabel: {
+      payload: Prisma.$AppLabelPayload<ExtArgs>
+      fields: Prisma.AppLabelFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AppLabelFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLabelPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AppLabelFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLabelPayload>
+        }
+        findFirst: {
+          args: Prisma.AppLabelFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLabelPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AppLabelFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLabelPayload>
+        }
+        findMany: {
+          args: Prisma.AppLabelFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLabelPayload>[]
+        }
+        create: {
+          args: Prisma.AppLabelCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLabelPayload>
+        }
+        createMany: {
+          args: Prisma.AppLabelCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AppLabelCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLabelPayload>[]
+        }
+        delete: {
+          args: Prisma.AppLabelDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLabelPayload>
+        }
+        update: {
+          args: Prisma.AppLabelUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLabelPayload>
+        }
+        deleteMany: {
+          args: Prisma.AppLabelDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AppLabelUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AppLabelUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLabelPayload>[]
+        }
+        upsert: {
+          args: Prisma.AppLabelUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLabelPayload>
+        }
+        aggregate: {
+          args: Prisma.AppLabelAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAppLabel>
+        }
+        groupBy: {
+          args: Prisma.AppLabelGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppLabelGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AppLabelCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppLabelCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -884,6 +1034,25 @@ export const AppsGoogleLinkScalarFieldEnum = {
 } as const
 
 export type AppsGoogleLinkScalarFieldEnum = (typeof AppsGoogleLinkScalarFieldEnum)[keyof typeof AppsGoogleLinkScalarFieldEnum]
+
+
+export const LabelScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  nameKey: 'nameKey',
+  createdAt: 'createdAt'
+} as const
+
+export type LabelScalarFieldEnum = (typeof LabelScalarFieldEnum)[keyof typeof LabelScalarFieldEnum]
+
+
+export const AppLabelScalarFieldEnum = {
+  appId: 'appId',
+  labelId: 'labelId',
+  createdAt: 'createdAt'
+} as const
+
+export type AppLabelScalarFieldEnum = (typeof AppLabelScalarFieldEnum)[keyof typeof AppLabelScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1171,6 +1340,8 @@ export type GlobalOmitConfig = {
   app?: Prisma.AppOmit
   appsAppleLink?: Prisma.AppsAppleLinkOmit
   appsGoogleLink?: Prisma.AppsGoogleLinkOmit
+  label?: Prisma.LabelOmit
+  appLabel?: Prisma.AppLabelOmit
 }
 
 /* Types for Logging */

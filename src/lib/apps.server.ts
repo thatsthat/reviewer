@@ -42,6 +42,15 @@ export function pickDefaultPrimary(relations: Array<AppRelation>): AppRelation |
   return [...relations].sort(compareAppRelations)[0] ?? null
 }
 
+export interface LabelOption {
+  id: number
+  name: string
+}
+
+function compareLabels(a: LabelOption, b: LabelOption): number {
+  return a.name.localeCompare(b.name, 'en')
+}
+
 type Db = Prisma.TransactionClient | typeof prisma
 
 export async function loadRelations(db: Db, appId: number): Promise<Array<AppRelation>> {
@@ -111,7 +120,17 @@ export async function loadAppDetail(appId: number) {
   const relations = loaded.map((r) => ({ ...r, isPrimary: r === main }))
   const primary = main ? await loadListingSummary(main.store, main.storeAppId) : null
 
-  return { app, relations, primary }
+  const [assigned, everyLabel] = await Promise.all([
+    prisma.appLabel.findMany({
+      where: { appId },
+      select: { label: { select: { id: true, name: true } } },
+    }),
+    prisma.label.findMany({ select: { id: true, name: true } }),
+  ])
+  const labels = assigned.map((row) => row.label).sort(compareLabels)
+  const allLabels = [...everyLabel].sort(compareLabels)
+
+  return { app, relations, primary, labels, allLabels }
 }
 
 export async function setPrimaryListing(
@@ -165,6 +184,19 @@ export async function mergeAppGroups(targetAppId: number, sourceAppIds: Array<nu
       where: { appId: { in: sourceAppIds } },
       data: { appId: targetAppId },
     })
+    const sourceLabels = await tx.appLabel.findMany({
+      where: { appId: { in: sourceAppIds } },
+      select: { labelId: true },
+    })
+    if (sourceLabels.length > 0) {
+      await tx.appLabel.createMany({
+        data: [...new Set(sourceLabels.map((l) => l.labelId))].map((labelId) => ({
+          appId: targetAppId,
+          labelId,
+        })),
+        skipDuplicates: true,
+      })
+    }
     await tx.app.deleteMany({ where: { id: { in: sourceAppIds } } })
     const merged = pickDefaultPrimary(await loadRelations(tx, targetAppId))
     await tx.app.update({

@@ -55,7 +55,9 @@ export const ModelName = {
   Google: 'Google',
   App: 'App',
   AppsAppleLink: 'AppsAppleLink',
-  AppsGoogleLink: 'AppsGoogleLink'
+  AppsGoogleLink: 'AppsGoogleLink',
+  Label: 'Label',
+  AppLabel: 'AppLabel'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -128,6 +130,25 @@ export const AppsGoogleLinkScalarFieldEnum = {
 } as const
 
 export type AppsGoogleLinkScalarFieldEnum = (typeof AppsGoogleLinkScalarFieldEnum)[keyof typeof AppsGoogleLinkScalarFieldEnum]
+
+
+export const LabelScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  nameKey: 'nameKey',
+  createdAt: 'createdAt'
+} as const
+
+export type LabelScalarFieldEnum = (typeof LabelScalarFieldEnum)[keyof typeof LabelScalarFieldEnum]
+
+
+export const AppLabelScalarFieldEnum = {
+  appId: 'appId',
+  labelId: 'labelId',
+  createdAt: 'createdAt'
+} as const
+
+export type AppLabelScalarFieldEnum = (typeof AppLabelScalarFieldEnum)[keyof typeof AppLabelScalarFieldEnum]
 
 
 export const SortOrder = {

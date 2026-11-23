@@ -9,6 +9,7 @@ const tx = {
     delete: vi.fn(),
     findUniqueOrThrow: vi.fn(),
   },
+  appLabel: { findMany: vi.fn(), createMany: vi.fn() },
   appsAppleLink: {
     findMany: vi.fn(),
     findFirst: vi.fn(),
@@ -31,6 +32,8 @@ const tx = {
 
 const prisma = {
   app: { findUnique: vi.fn(), update: vi.fn() },
+  appLabel: { findMany: vi.fn() },
+  label: { findMany: vi.fn() },
   appsAppleLink: { findMany: vi.fn() },
   appsGoogleLink: { findMany: vi.fn() },
   google: { findUnique: vi.fn() },
@@ -78,6 +81,9 @@ function mockLinks(
 
 beforeEach(() => {
   vi.clearAllMocks()
+  prisma.appLabel.findMany.mockResolvedValue([])
+  prisma.label.findMany.mockResolvedValue([])
+  tx.appLabel.findMany.mockResolvedValue([])
 })
 
 describe('compareAppRelations', () => {
@@ -195,6 +201,35 @@ describe('loadAppDetail', () => {
   })
 })
 
+describe('loadAppDetail labels', () => {
+  it('returns the group labels sorted by name and every label including unused ones', async () => {
+    prisma.app.findUnique.mockResolvedValue({
+      id: 1,
+      title: 'Group',
+      primaryStore: 'google',
+      primaryStoreAppId: 'x',
+    })
+    mockLinks(prisma, [], [])
+    prisma.appLabel.findMany.mockResolvedValue([
+      { label: { id: 1, name: 'Kids' } },
+      { label: { id: 2, name: 'Education' } },
+    ])
+    prisma.label.findMany.mockResolvedValue([
+      { id: 3, name: 'Puzzle' },
+      { id: 1, name: 'Kids' },
+      { id: 2, name: 'Education' },
+    ])
+
+    const result = await loadAppDetail(1)
+
+    expect(result.labels).toEqual([
+      { id: 2, name: 'Education' },
+      { id: 1, name: 'Kids' },
+    ])
+    expect(result.allLabels.map((l) => l.name)).toEqual(['Education', 'Kids', 'Puzzle'])
+  })
+})
+
 describe('setPrimaryListing', () => {
   it('saves a listing linked to the app', async () => {
     mockLinks(tx, [['42', 'Alpha']], [['com.z', 'Zeta']])
@@ -272,6 +307,16 @@ describe('splitAppFromGroup', () => {
     expect(sourceUpdate.where).toEqual({ id: 1 })
     expect(sourceUpdate.data).not.toHaveProperty('primaryStore')
   })
+
+  it('creates the new app without label writes and leaves the original labels alone', async () => {
+    setupSplit({ primaryStore: 'google', primaryStoreAppId: 'com.z' })
+
+    await splitAppFromGroup('apple', '42')
+
+    expect(tx.appLabel.createMany).not.toHaveBeenCalled()
+    expect(tx.app.create.mock.calls[0][0].data).not.toHaveProperty('labels')
+    expect(tx.app.delete).not.toHaveBeenCalled()
+  })
 })
 
 describe('mergeAppGroups', () => {
@@ -295,5 +340,35 @@ describe('mergeAppGroups', () => {
       primaryStore: 'google',
       primaryStoreAppId: 'com.pro',
     })
+  })
+
+  it('copies the source labels onto the target before deleting the sources', async () => {
+    mockLinks(tx, [['42', 'Foo']], [])
+    tx.appLabel.findMany.mockResolvedValue([{ labelId: 1 }, { labelId: 3 }])
+
+    await mergeAppGroups(1, [2])
+
+    expect(tx.appLabel.findMany).toHaveBeenCalledWith({
+      where: { appId: { in: [2] } },
+      select: { labelId: true },
+    })
+    expect(tx.appLabel.createMany).toHaveBeenCalledWith({
+      data: [
+        { appId: 1, labelId: 1 },
+        { appId: 1, labelId: 3 },
+      ],
+      skipDuplicates: true,
+    })
+    expect(tx.appLabel.createMany.mock.invocationCallOrder[0]).toBeLessThan(
+      tx.app.deleteMany.mock.invocationCallOrder[0],
+    )
+  })
+
+  it('skips the label copy when the sources have no labels', async () => {
+    mockLinks(tx, [['42', 'Foo']], [])
+
+    await mergeAppGroups(1, [2])
+
+    expect(tx.appLabel.createMany).not.toHaveBeenCalled()
   })
 })

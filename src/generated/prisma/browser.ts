@@ -42,3 +42,13 @@ export type AppsAppleLink = Prisma.AppsAppleLinkModel
  * 
  */
 export type AppsGoogleLink = Prisma.AppsGoogleLinkModel
+/**
+ * Model Label
+ * 
+ */
+export type Label = Prisma.LabelModel
+/**
+ * Model AppLabel
+ * 
+ */
+export type AppLabel = Prisma.AppLabelModel

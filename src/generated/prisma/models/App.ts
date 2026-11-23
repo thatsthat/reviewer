@@ -226,6 +226,7 @@ export type AppWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"App"> | Date | string
   appleLinks?: Prisma.AppsAppleLinkListRelationFilter
   googleLinks?: Prisma.AppsGoogleLinkListRelationFilter
+  labels?: Prisma.AppLabelListRelationFilter
 }
 
 export type AppOrderByWithRelationInput = {
@@ -237,6 +238,7 @@ export type AppOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   appleLinks?: Prisma.AppsAppleLinkOrderByRelationAggregateInput
   googleLinks?: Prisma.AppsGoogleLinkOrderByRelationAggregateInput
+  labels?: Prisma.AppLabelOrderByRelationAggregateInput
 }
 
 export type AppWhereUniqueInput = Prisma.AtLeast<{
@@ -251,6 +253,7 @@ export type AppWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"App"> | Date | string
   appleLinks?: Prisma.AppsAppleLinkListRelationFilter
   googleLinks?: Prisma.AppsGoogleLinkListRelationFilter
+  labels?: Prisma.AppLabelListRelationFilter
 }, "id">
 
 export type AppOrderByWithAggregationInput = {
@@ -287,6 +290,7 @@ export type AppCreateInput = {
   updatedAt?: Date | string
   appleLinks?: Prisma.AppsAppleLinkCreateNestedManyWithoutAppInput
   googleLinks?: Prisma.AppsGoogleLinkCreateNestedManyWithoutAppInput
+  labels?: Prisma.AppLabelCreateNestedManyWithoutAppInput
 }
 
 export type AppUncheckedCreateInput = {
@@ -298,6 +302,7 @@ export type AppUncheckedCreateInput = {
   updatedAt?: Date | string
   appleLinks?: Prisma.AppsAppleLinkUncheckedCreateNestedManyWithoutAppInput
   googleLinks?: Prisma.AppsGoogleLinkUncheckedCreateNestedManyWithoutAppInput
+  labels?: Prisma.AppLabelUncheckedCreateNestedManyWithoutAppInput
 }
 
 export type AppUpdateInput = {
@@ -308,6 +313,7 @@ export type AppUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appleLinks?: Prisma.AppsAppleLinkUpdateManyWithoutAppNestedInput
   googleLinks?: Prisma.AppsGoogleLinkUpdateManyWithoutAppNestedInput
+  labels?: Prisma.AppLabelUpdateManyWithoutAppNestedInput
 }
 
 export type AppUncheckedUpdateInput = {
@@ -319,6 +325,7 @@ export type AppUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appleLinks?: Prisma.AppsAppleLinkUncheckedUpdateManyWithoutAppNestedInput
   googleLinks?: Prisma.AppsGoogleLinkUncheckedUpdateManyWithoutAppNestedInput
+  labels?: Prisma.AppLabelUncheckedUpdateManyWithoutAppNestedInput
 }
 
 export type AppCreateManyInput = {
@@ -427,6 +434,20 @@ export type AppUpdateOneRequiredWithoutGoogleLinksNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AppUpdateToOneWithWhereWithoutGoogleLinksInput, Prisma.AppUpdateWithoutGoogleLinksInput>, Prisma.AppUncheckedUpdateWithoutGoogleLinksInput>
 }
 
+export type AppCreateNestedOneWithoutLabelsInput = {
+  create?: Prisma.XOR<Prisma.AppCreateWithoutLabelsInput, Prisma.AppUncheckedCreateWithoutLabelsInput>
+  connectOrCreate?: Prisma.AppCreateOrConnectWithoutLabelsInput
+  connect?: Prisma.AppWhereUniqueInput
+}
+
+export type AppUpdateOneRequiredWithoutLabelsNestedInput = {
+  create?: Prisma.XOR<Prisma.AppCreateWithoutLabelsInput, Prisma.AppUncheckedCreateWithoutLabelsInput>
+  connectOrCreate?: Prisma.AppCreateOrConnectWithoutLabelsInput
+  upsert?: Prisma.AppUpsertWithoutLabelsInput
+  connect?: Prisma.AppWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AppUpdateToOneWithWhereWithoutLabelsInput, Prisma.AppUpdateWithoutLabelsInput>, Prisma.AppUncheckedUpdateWithoutLabelsInput>
+}
+
 export type AppCreateWithoutAppleLinksInput = {
   title: string
   primaryStore: $Enums.Store
@@ -434,6 +455,7 @@ export type AppCreateWithoutAppleLinksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   googleLinks?: Prisma.AppsGoogleLinkCreateNestedManyWithoutAppInput
+  labels?: Prisma.AppLabelCreateNestedManyWithoutAppInput
 }
 
 export type AppUncheckedCreateWithoutAppleLinksInput = {
@@ -444,6 +466,7 @@ export type AppUncheckedCreateWithoutAppleLinksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   googleLinks?: Prisma.AppsGoogleLinkUncheckedCreateNestedManyWithoutAppInput
+  labels?: Prisma.AppLabelUncheckedCreateNestedManyWithoutAppInput
 }
 
 export type AppCreateOrConnectWithoutAppleLinksInput = {
@@ -469,6 +492,7 @@ export type AppUpdateWithoutAppleLinksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   googleLinks?: Prisma.AppsGoogleLinkUpdateManyWithoutAppNestedInput
+  labels?: Prisma.AppLabelUpdateManyWithoutAppNestedInput
 }
 
 export type AppUncheckedUpdateWithoutAppleLinksInput = {
@@ -479,6 +503,7 @@ export type AppUncheckedUpdateWithoutAppleLinksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   googleLinks?: Prisma.AppsGoogleLinkUncheckedUpdateManyWithoutAppNestedInput
+  labels?: Prisma.AppLabelUncheckedUpdateManyWithoutAppNestedInput
 }
 
 export type AppCreateWithoutGoogleLinksInput = {
@@ -488,6 +513,7 @@ export type AppCreateWithoutGoogleLinksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   appleLinks?: Prisma.AppsAppleLinkCreateNestedManyWithoutAppInput
+  labels?: Prisma.AppLabelCreateNestedManyWithoutAppInput
 }
 
 export type AppUncheckedCreateWithoutGoogleLinksInput = {
@@ -498,6 +524,7 @@ export type AppUncheckedCreateWithoutGoogleLinksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   appleLinks?: Prisma.AppsAppleLinkUncheckedCreateNestedManyWithoutAppInput
+  labels?: Prisma.AppLabelUncheckedCreateNestedManyWithoutAppInput
 }
 
 export type AppCreateOrConnectWithoutGoogleLinksInput = {
@@ -523,6 +550,7 @@ export type AppUpdateWithoutGoogleLinksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appleLinks?: Prisma.AppsAppleLinkUpdateManyWithoutAppNestedInput
+  labels?: Prisma.AppLabelUpdateManyWithoutAppNestedInput
 }
 
 export type AppUncheckedUpdateWithoutGoogleLinksInput = {
@@ -533,6 +561,65 @@ export type AppUncheckedUpdateWithoutGoogleLinksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appleLinks?: Prisma.AppsAppleLinkUncheckedUpdateManyWithoutAppNestedInput
+  labels?: Prisma.AppLabelUncheckedUpdateManyWithoutAppNestedInput
+}
+
+export type AppCreateWithoutLabelsInput = {
+  title: string
+  primaryStore: $Enums.Store
+  primaryStoreAppId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  appleLinks?: Prisma.AppsAppleLinkCreateNestedManyWithoutAppInput
+  googleLinks?: Prisma.AppsGoogleLinkCreateNestedManyWithoutAppInput
+}
+
+export type AppUncheckedCreateWithoutLabelsInput = {
+  id?: number
+  title: string
+  primaryStore: $Enums.Store
+  primaryStoreAppId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  appleLinks?: Prisma.AppsAppleLinkUncheckedCreateNestedManyWithoutAppInput
+  googleLinks?: Prisma.AppsGoogleLinkUncheckedCreateNestedManyWithoutAppInput
+}
+
+export type AppCreateOrConnectWithoutLabelsInput = {
+  where: Prisma.AppWhereUniqueInput
+  create: Prisma.XOR<Prisma.AppCreateWithoutLabelsInput, Prisma.AppUncheckedCreateWithoutLabelsInput>
+}
+
+export type AppUpsertWithoutLabelsInput = {
+  update: Prisma.XOR<Prisma.AppUpdateWithoutLabelsInput, Prisma.AppUncheckedUpdateWithoutLabelsInput>
+  create: Prisma.XOR<Prisma.AppCreateWithoutLabelsInput, Prisma.AppUncheckedCreateWithoutLabelsInput>
+  where?: Prisma.AppWhereInput
+}
+
+export type AppUpdateToOneWithWhereWithoutLabelsInput = {
+  where?: Prisma.AppWhereInput
+  data: Prisma.XOR<Prisma.AppUpdateWithoutLabelsInput, Prisma.AppUncheckedUpdateWithoutLabelsInput>
+}
+
+export type AppUpdateWithoutLabelsInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryStore?: Prisma.EnumStoreFieldUpdateOperationsInput | $Enums.Store
+  primaryStoreAppId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appleLinks?: Prisma.AppsAppleLinkUpdateManyWithoutAppNestedInput
+  googleLinks?: Prisma.AppsGoogleLinkUpdateManyWithoutAppNestedInput
+}
+
+export type AppUncheckedUpdateWithoutLabelsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryStore?: Prisma.EnumStoreFieldUpdateOperationsInput | $Enums.Store
+  primaryStoreAppId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appleLinks?: Prisma.AppsAppleLinkUncheckedUpdateManyWithoutAppNestedInput
+  googleLinks?: Prisma.AppsGoogleLinkUncheckedUpdateManyWithoutAppNestedInput
 }
 
 
@@ -543,11 +630,13 @@ export type AppUncheckedUpdateWithoutGoogleLinksInput = {
 export type AppCountOutputType = {
   appleLinks: number
   googleLinks: number
+  labels: number
 }
 
 export type AppCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   appleLinks?: boolean | AppCountOutputTypeCountAppleLinksArgs
   googleLinks?: boolean | AppCountOutputTypeCountGoogleLinksArgs
+  labels?: boolean | AppCountOutputTypeCountLabelsArgs
 }
 
 /**
@@ -574,6 +663,13 @@ export type AppCountOutputTypeCountGoogleLinksArgs<ExtArgs extends runtime.Types
   where?: Prisma.AppsGoogleLinkWhereInput
 }
 
+/**
+ * AppCountOutputType without action
+ */
+export type AppCountOutputTypeCountLabelsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AppLabelWhereInput
+}
+
 
 export type AppSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -584,6 +680,7 @@ export type AppSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   updatedAt?: boolean
   appleLinks?: boolean | Prisma.App$appleLinksArgs<ExtArgs>
   googleLinks?: boolean | Prisma.App$googleLinksArgs<ExtArgs>
+  labels?: boolean | Prisma.App$labelsArgs<ExtArgs>
   _count?: boolean | Prisma.AppCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["app"]>
 
@@ -618,6 +715,7 @@ export type AppOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
 export type AppInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   appleLinks?: boolean | Prisma.App$appleLinksArgs<ExtArgs>
   googleLinks?: boolean | Prisma.App$googleLinksArgs<ExtArgs>
+  labels?: boolean | Prisma.App$labelsArgs<ExtArgs>
   _count?: boolean | Prisma.AppCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AppIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -628,6 +726,7 @@ export type $AppPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   objects: {
     appleLinks: Prisma.$AppsAppleLinkPayload<ExtArgs>[]
     googleLinks: Prisma.$AppsGoogleLinkPayload<ExtArgs>[]
+    labels: Prisma.$AppLabelPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1032,6 +1131,7 @@ export interface Prisma__AppClient<T, Null = never, ExtArgs extends runtime.Type
   readonly [Symbol.toStringTag]: "PrismaPromise"
   appleLinks<T extends Prisma.App$appleLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.App$appleLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppsAppleLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   googleLinks<T extends Prisma.App$googleLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.App$googleLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppsGoogleLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  labels<T extends Prisma.App$labelsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.App$labelsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppLabelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1505,6 +1605,30 @@ export type App$googleLinksArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.AppsGoogleLinkScalarFieldEnum | Prisma.AppsGoogleLinkScalarFieldEnum[]
+}
+
+/**
+ * App.labels
+ */
+export type App$labelsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AppLabel
+   */
+  select?: Prisma.AppLabelSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AppLabel
+   */
+  omit?: Prisma.AppLabelOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AppLabelInclude<ExtArgs> | null
+  where?: Prisma.AppLabelWhereInput
+  orderBy?: Prisma.AppLabelOrderByWithRelationInput | Prisma.AppLabelOrderByWithRelationInput[]
+  cursor?: Prisma.AppLabelWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AppLabelScalarFieldEnum | Prisma.AppLabelScalarFieldEnum[]
 }
 
 /**
