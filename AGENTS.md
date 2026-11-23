@@ -28,6 +28,8 @@
 - Never hardcode database credentials or expose them in client-side code.
 - All data requiring durable persistence must be stored in PostgreSQL.
 - Keep database operations on the server side, using TanStack Start server functions where appropriate.
+- The database is a single PostgreSQL instance shared over Tailscale by every machine and agent. A migration applied from one checkout is live for all of them.
+- Never reset the database or accept a `prisma migrate dev` reset prompt. After pulling, check `prisma migrate status` first, and apply pending migrations with `prisma migrate deploy`.
 
 ## Implementation Principles
 
@@ -36,6 +38,10 @@
 - Avoid adding dependencies unless there is a clear need.
 - Keep TypeScript types explicit and avoid using `any` unless absolutely necessary.
 - Do not introduce alternative state management libraries or database access patterns without explicit approval.
+
+## Git
+
+- Commit and push directly to `main` (the remote is named `upstream`). Do not create feature branches or pull requests unless asked.
 
 <!-- intent-skills:start -->
 
